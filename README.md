@@ -2,7 +2,7 @@
 
 Чат
 
-Ссылка на сайт: ()
+Ссылка на сайт: (https://frontend-project-12-rust.vercel.app/login)
 
 
 ## Setup
