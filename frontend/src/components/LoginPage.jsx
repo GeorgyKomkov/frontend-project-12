@@ -2,10 +2,17 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth.js';
 import avatar from '../assets/avatar.jpg';
+import routes from '../routes.js';
 
 const LoginPage = () => {
   const { t } = useTranslation();
+  const auth = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -15,8 +22,15 @@ const LoginPage = () => {
       username: yup.string().required('Это поле обязательно'),
       password: yup.string().required('Это поле обязательно'),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async ({ username, password }) => {
+      try {
+        await auth.logIn({ username, password });
+        const { from } = location.state || { from: { pathname: routes.home() } };
+        navigate(from);
+        console.log('зерГуд');
+      } catch (err) {
+        console.log('ОШИБКА ', err);
+      }
     },
   });
 
@@ -27,7 +41,11 @@ const LoginPage = () => {
           <div className="card shadow-sm">
             <div className="card-body row p-5">
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img src={avatar} className="rounded-circle" alt={t('loginHeader')} />
+                <img
+                  src={avatar}
+                  className="rounded-circle"
+                  alt={t('loginHeader')}
+                />
               </div>
               <Form
                 className="col-12 col-md-6 mt-3 mt-mb-0"
@@ -53,6 +71,7 @@ const LoginPage = () => {
                   <Form.Control
                     type="password"
                     name="password"
+                    autoComplete={t('password')}
                     placeholder={t('password')}
                     value={formik.values.password}
                     onChange={formik.handleChange}
@@ -60,7 +79,7 @@ const LoginPage = () => {
                       formik.touched.password && formik.errors.password
                     }
                   />
-                  <Form.Label htmlFor="password">{t('password')}</Form.Label>
+                  <Form.Label>{t('password')}</Form.Label>
                   <Form.Control.Feedback type="invalid">
                     {formik.errors.password}
                   </Form.Control.Feedback>
