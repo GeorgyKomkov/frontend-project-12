@@ -9,5 +9,6 @@ export default {
     noAccountQM: 'Нет аккаунта? ',
     registration: 'Регистрация',
     mainHeader: 'Hexlet Chat',
+    redirectTextEnd: 'Вернутся',
   },
 };
