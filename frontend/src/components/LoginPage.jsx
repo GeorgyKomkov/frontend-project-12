@@ -27,7 +27,7 @@ const LoginPage = () => {
         await auth.logIn({ username, password });
         const { from } = location.state || { from: { pathname: routes.home() } };
         navigate(from);
-        console.log('зерГуд');
+        console.log('Все хорошо');
       } catch (err) {
         console.log('ОШИБКА ', err);
       }
