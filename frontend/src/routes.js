@@ -6,4 +6,5 @@ export default {
   login: () => '/login',
   signup: () => '/signup',
   signupPage: () => [apiPath, 'signup'].join('/'),
+  dataPath: () => [apiPath, 'data'].join('/'),
 };

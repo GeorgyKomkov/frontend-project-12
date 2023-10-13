@@ -6,7 +6,7 @@ import {
   useLocation,
   Navigate,
 } from 'react-router-dom';
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import LoginPage from './LoginPage';
 import NotFoundPage from './NotFoundPage';
@@ -18,11 +18,17 @@ import { useAuth } from '../hooks/useAuth';
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const auth = useAuth();
-  return auth ? (
+  return auth.user ? (
     children
   ) : (
     <Navigate to={routes.login()} state={{ from: location }} />
   );
+};
+
+const LogOut = () => {
+  const auth = useAuth();
+  const { t } = useTranslation();
+  return auth.user ? <Button onClick={auth.logOut}>{t('logOut')}</Button> : null;
 };
 
 const App = () => {
@@ -35,6 +41,7 @@ const App = () => {
             <Navbar.Brand as={Link} to={routes.home()}>
               {t('mainHeader')}
             </Navbar.Brand>
+            <LogOut />
           </Container>
         </Navbar>
         <Routes>

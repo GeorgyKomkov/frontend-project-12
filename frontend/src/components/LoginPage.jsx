@@ -24,10 +24,11 @@ const LoginPage = () => {
     }),
     onSubmit: async ({ username, password }) => {
       try {
-        await auth.logIn({ username, password });
-        const { from } = location.state || { from: { pathname: routes.home() } };
+        await auth.logIn(username, password);
+        const { from } = location.state || {
+          from: { pathname: routes.home() },
+        };
         navigate(from);
-        console.log('Все хорошо');
       } catch (err) {
         console.log('ОШИБКА ', err);
       }

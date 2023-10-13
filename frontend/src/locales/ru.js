@@ -1,6 +1,7 @@
 export default {
   translation: {
     language: 'Русский',
+    logOut: 'Выйти',
     notFound: 'Страница не найдена',
     loginHeader: 'Войти',
     username: 'Ваш ник',
