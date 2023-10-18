@@ -11,5 +11,9 @@ export default {
     registration: 'Регистрация',
     mainHeader: 'Hexlet Chat',
     redirectTextEnd: 'Вернутся',
+    channels: 'Каналы',
+    newMessage: 'Новое сообщение',
+    newMessagePlaceholder: 'Введите сообщение...',
+    send: 'Отправить',
   },
 };

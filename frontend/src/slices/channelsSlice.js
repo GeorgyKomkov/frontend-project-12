@@ -1,19 +1,24 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   channels: [],
+  currentChannelId: null,
 };
 
 const channelsSlice = createSlice({
-  name: 'channels',
+  name: 'channelsInfo',
   initialState,
   reducers: {
-    addChannel(state, { payload }) {
-      // eslint-disable-next-line no-param-reassign
-      state.channels.push(payload);
+    setInitialState(state, { payload }) {
+      state.channels = [...payload.channels];
+      state.currentChannelId = payload.currentChannelId;
+    },
+    setCurrentChannel(state, { payload }) {
+      state.currentChannelId = payload;
     },
   },
 });
 
-export const { addChannel } = channelsSlice.actions;
+export const { setInitialState, setCurrentChannel } = channelsSlice.actions;
 export default channelsSlice.reducer;

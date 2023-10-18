@@ -8,13 +8,12 @@ import getDataChannels from '../api/getDataChannels';
 
 const ChatPage = () => {
   const auth = useAuth();
-  console.log(auth.user.username);
   const dispatch = useDispatch();
   const { token } = auth.user;
   const header = token ? { Authorization: `Bearer ${token}` } : {};
 
   useEffect(() => {
-    dispatch(getDataChannels(header));
+    dispatch(getDataChannels(dispatch, header));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
