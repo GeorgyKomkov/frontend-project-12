@@ -7,22 +7,23 @@ import { setCurrentChannel } from '../slices/channelsSlice';
 
 const Channels = () => {
   const { t } = useTranslation();
-  const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
+  // const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
   const dispatch = useDispatch();
-  const channels = useSelector((state) => state.channelsInfo.channels);
+  // const channels = useSelector((state) => state.channelsInfo.channels);
+  const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const handleChannelClick = (id) => dispatch(setCurrentChannel(id));
 
   const listChannels = channels.map((channel) => (
-    <Button
-      className={`w-100 rounded-0 text-start  ${
-        channel.id === currentChannelId ? 'btn btn-secondary' : 'btn'
-      }`}
-      key={channel.id}
-      onClick={() => handleChannelClick(channel.id)}
-    >
-      <span className="me-1">#</span>
-      {channel.name}
-    </Button>
+    <li className="nav-item w-100" key={channel.id}>
+      <Button
+        className="w-100 rounded-0 text-start"
+        variant={channel.id === currentChannelId ? 'secondary' : ''}
+        onClick={() => handleChannelClick(channel.id)}
+      >
+        <span className="me-1">#</span>
+        {channel.name}
+      </Button>
+    </li>
   ));
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">

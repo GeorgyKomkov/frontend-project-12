@@ -2,9 +2,7 @@ import { useSelector } from 'react-redux';
 import NewMessegeForm from './NewMessegeForm';
 
 const Messages = () => {
-  // const { t } = useTranslation();
-  const channels = useSelector((state) => state.channelsInfo.channels);
-  const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
+  const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const currentName = currentChannel ? currentChannel.name : '';
 
