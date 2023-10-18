@@ -21,7 +21,7 @@ const NewMessegeForm = () => {
   });
   return (
     <div className="mt-auto px-5 py-3">
-      <Form onSubmit={formik.handleSubmit}>
+      <Form onSubmit={formik.handleSubmit} novalidate className="py-1 border rounded-2">
         <Form.Group className="input-group">
           <Form.Control
             name="messageBody"

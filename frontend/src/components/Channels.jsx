@@ -14,7 +14,7 @@ const Channels = () => {
 
   const listChannels = channels.map((channel) => (
     <Button
-      className={`w-100 rounded-0 text-start btn ${
+      className={`w-100 rounded-0 text-start  ${
         channel.id === currentChannelId ? 'btn btn-secondary' : 'btn'
       }`}
       key={channel.id}
