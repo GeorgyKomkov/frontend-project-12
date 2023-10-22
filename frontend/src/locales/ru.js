@@ -15,5 +15,11 @@ export default {
     newMessage: 'Новое сообщение',
     newMessagePlaceholder: 'Введите сообщение...',
     send: 'Отправить',
+    messagesCounter: {
+      messages_zero: 'Нет сообщений',
+      messages_one: '{{count}} сообщение',
+      messages_few: '{{count}} сообщения',
+      messages_many: '{{count}} сообщений',
+    },
   },
 };

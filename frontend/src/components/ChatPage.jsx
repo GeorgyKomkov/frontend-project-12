@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Channels from './Channels';
-import Messages from './Messages';
-// import axios from 'axios';
+import Messages from './messages/Messages';
 import { useAuth } from '../hooks/useAuth';
 import getDataChannels from '../api/getDataChannels';
 
