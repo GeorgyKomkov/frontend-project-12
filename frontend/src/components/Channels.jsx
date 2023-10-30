@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import ChannelIcon from '../icons/ChannelIcon';
 import { setCurrentChannel } from '../slices/channelsSlice';
+import { open } from '../slices/modalSlice';
 
 const Channels = () => {
   const { t } = useTranslation();
@@ -23,6 +24,9 @@ const Channels = () => {
       </Button>
     </li>
   ));
+  const hendleAddChannel = () => {
+    dispatch(open({ type: 'addChannel' }));
+  };
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
@@ -30,6 +34,7 @@ const Channels = () => {
         <Button
           variant="link"
           className="p-0 text-primary btn-group-vertical border-0"
+          onClick={hendleAddChannel}
         >
           <ChannelIcon />
           <span className="visually-hidden">+</span>

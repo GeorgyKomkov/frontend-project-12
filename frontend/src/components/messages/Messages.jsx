@@ -1,14 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { addMessages } from '../../slices/messagesSlice';
 import NewMessegeForm from './NewMessegeForm';
 import { getNewMessages } from '../../socketApi';
+import { useAuth } from '../../hooks/useAuth';
 
 const Messages = () => {
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const currentName = currentChannel ? currentChannel.name : '';
+  const auth = useAuth();
+  const { username } = auth.user;
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messagesInfo.messages);
@@ -16,7 +18,7 @@ const Messages = () => {
 
   const listMessages = currentMesseges.map((message) => (
     <div className="text-break mb-2" key={message.id}>
-      <b>{message.username}</b>
+      <b>{username}</b>
       {`: ${message.body}`}
     </div>
   ));
@@ -31,7 +33,7 @@ const Messages = () => {
         {/* блок шапки */}
         <div className="bg-light mb-4 p-3 shadow-sm small">
           <p className="m-0">
-            <b>{`#${currentName}`}</b>
+            <b>{`# ${currentName}`}</b>
           </p>
           <span className="text-muted">{t('messagesCounter.messages', { count: currentMesseges.length })}</span>
         </div>

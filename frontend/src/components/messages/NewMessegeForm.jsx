@@ -3,7 +3,6 @@ import { Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
-// import { uniqueId } from 'lodash';
 import SendMessageIcon from '../../icons/SendMessagesIcon';
 import { newMessage } from '../../socketApi';
 
@@ -11,8 +10,6 @@ const NewMessegeForm = () => {
   const { t } = useTranslation();
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
-  // const currentName = currentChannel ? currentChannel.name : '';
-  // const myUniqueId = uniqueId();
   const formik = useFormik({
     initialValues: { messageBody: '' },
     onSubmit: ({ messageBody }) => {
