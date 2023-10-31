@@ -1,7 +1,9 @@
 import Add from './Add';
+import Remove from './Remove';
 
 const modals = {
   addChannel: Add,
+  removeChannel: Remove,
 };
 // по типу окна вызываем необходимое модальное окно
 const getModal = (type) => modals[type];

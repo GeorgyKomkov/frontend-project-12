@@ -27,6 +27,11 @@ export const getNewChannels = (dispatch) => {
   });
 };
 
+export const removeChannel = (channalId) => {
+  socket.emit('removeChannel', { id: channalId });
+};
+
 // export default newMessage;
 
 // socket.emit('newChannel', { name: "new channel" });
+// добавить к каналам ту же проверку что и сообщением на счет того как они дошли до сервера

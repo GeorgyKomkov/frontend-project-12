@@ -13,6 +13,12 @@ const Channels = () => {
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const handleChannelClick = (id) => dispatch(setCurrentChannel(id));
+  const hendleAddChannel = () => {
+    dispatch(open({ type: 'addChannel' }));
+  };
+  const hendleRemoveChannel = () => {
+    dispatch(open({ type: 'removeChannel' }));
+  };
 
   useEffect(() => {
     // Загружаем начальное состояние каналов с сервера
@@ -31,13 +37,11 @@ const Channels = () => {
         {channel.name}
       </Button>
       { channel.removable && (
-      <Button className="flex-grow-0 dropdown-toggle dropdown-toggle-split btn btn-secondary" />
+      <Button className="flex-grow-0 dropdown-toggle dropdown-toggle-split btn btn-secondary" onClick={hendleRemoveChannel} />
       )}
     </li>
   ));
-  const hendleAddChannel = () => {
-    dispatch(open({ type: 'addChannel' }));
-  };
+
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
