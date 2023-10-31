@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { close } from '../../slices/modalSlice';
+import { newChannel } from '../../api/socketApi';
 
 const Add = () => {
   const inputRef = useRef();
@@ -10,7 +11,14 @@ const Add = () => {
     inputRef.current.focus();
   }, []);
 
-  const formik = useFormik({ onSubmit: console.log('yaaaz'), initialValues: { body: '' } });
+  const formik = useFormik({
+    initialValues: { body: '' },
+    onSubmit: ({ body }, { resetForm }) => {
+      newChannel(body);
+      resetForm();
+      close();
+    },
+  });
   const dispath = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const hendleClose = () => dispath(close());

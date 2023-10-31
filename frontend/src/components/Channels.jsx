@@ -2,15 +2,23 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import ChannelIcon from '../icons/ChannelIcon';
 import { setCurrentChannel } from '../slices/channelsSlice';
 import { open } from '../slices/modalSlice';
+import { getNewChannels } from '../api/socketApi';
 
 const Channels = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const handleChannelClick = (id) => dispatch(setCurrentChannel(id));
+
+  useEffect(() => {
+    // Загружаем начальное состояние каналов с сервера
+    getNewChannels(dispatch);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const listChannels = channels.map((channel) => (
     <li className="nav-item w-100" key={channel.id}>
@@ -22,6 +30,9 @@ const Channels = () => {
         <span className="me-1">#</span>
         {channel.name}
       </Button>
+      { channel.removable && (
+      <Button className="flex-grow-0 dropdown-toggle dropdown-toggle-split btn btn-secondary" />
+      )}
     </li>
   ));
   const hendleAddChannel = () => {
