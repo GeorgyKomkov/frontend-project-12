@@ -10,18 +10,18 @@ const Add = () => {
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-
+  const dispath = useDispatch();
+  const isOpened = useSelector((state) => state.modal.isOpened);
+  const hendleClose = () => dispath(close());
   const formik = useFormik({
     initialValues: { body: '' },
     onSubmit: ({ body }, { resetForm }) => {
       newChannel(body);
       resetForm();
-      close();
+      hendleClose();
     },
   });
-  const dispath = useDispatch();
-  const isOpened = useSelector((state) => state.modal.isOpened);
-  const hendleClose = () => dispath(close());
+
   return (
     <Modal show={isOpened}>
       <Modal.Header closeButton onHide={hendleClose}>

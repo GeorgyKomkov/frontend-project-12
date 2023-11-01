@@ -6,7 +6,7 @@ import { removeChannel } from '../../api/socketApi';
 const Remove = () => {
   const dispath = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened);
-  const channalId = useSelector((state) => state.channelsInfo.currentChannelId);
+  const channalId = useSelector((state) => state.modal.extra.channalId);
   const hendleClose = () => dispath(close());
   const onSubmit = removeChannel(channalId);
 

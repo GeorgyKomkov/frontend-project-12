@@ -12,14 +12,14 @@ const NewMessegeForm = () => {
   const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const formik = useFormik({
     initialValues: { messageBody: '' },
-    onSubmit: ({ messageBody }) => {
+    onSubmit: ({ messageBody }, { resetForm }) => {
       try {
-        console.log('Данные отправляются корректно');
         newMessage({
           body: messageBody,
           channelId: currentChannelId,
           username: currentChannel.name,
         });
+        resetForm();
       } catch (err) {
         console.error(err);
       }
