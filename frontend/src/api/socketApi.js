@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { addMessages } from '../slices/messagesSlice';
-import { addChannel, removeChanneFromState } from '../slices/channelsSlice';
+import { addChannel, removeChanneFromState, renameChannelFromState } from '../slices/channelsSlice';
 
 const socket = io();
 
@@ -34,5 +34,15 @@ export const removeChannel = (channalId) => {
 export const listenForRemoveChannel = (dispatch) => {
   socket.on('removeChannel', (payload) => {
     dispatch(removeChanneFromState(payload));
+  });
+};
+
+export const renameChannel = (channalId, newNameChannel) => {
+  socket.emit('renameChannel', { id: channalId, name: newNameChannel });
+};
+
+export const listenForRenameChannel = (dispatch) => {
+  socket.on('renameChannel', (payload) => {
+    dispatch(renameChannelFromState(payload));
   });
 };

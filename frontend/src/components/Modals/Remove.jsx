@@ -10,16 +10,14 @@ const Remove = () => {
   const hendleClose = () => dispatch(close());
   // const onSubmit = removeChannel(channalId);
   const handleRemove = () => {
-    // Вызовите функцию для удаления канала только здесь, при подтверждении удаления.
     removeChannel(channalId);
-    // Закройте модальное окно.
     dispatch(close());
   };
 
   return (
     <Modal show={isOpened}>
       <Modal.Header closeButton onHide={hendleClose}>
-        <Modal.Title>Remove</Modal.Title>
+        <Modal.Title>Удалить канал</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
