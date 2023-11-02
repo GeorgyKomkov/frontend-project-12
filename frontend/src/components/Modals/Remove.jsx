@@ -4,11 +4,17 @@ import { close } from '../../slices/modalSlice';
 import { removeChannel } from '../../api/socketApi';
 
 const Remove = () => {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channalId = useSelector((state) => state.modal.extra.channalId);
-  const hendleClose = () => dispath(close());
-  const onSubmit = removeChannel(channalId);
+  const hendleClose = () => dispatch(close());
+  // const onSubmit = removeChannel(channalId);
+  const handleRemove = () => {
+    // Вызовите функцию для удаления канала только здесь, при подтверждении удаления.
+    removeChannel(channalId);
+    // Закройте модальное окно.
+    dispatch(close());
+  };
 
   return (
     <Modal show={isOpened}>
@@ -17,7 +23,7 @@ const Remove = () => {
       </Modal.Header>
 
       <Modal.Body>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleRemove}>
           <FormGroup>
             <input
               type="button"

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import ChannelIcon from '../icons/ChannelIcon';
 import { setCurrentChannel } from '../slices/channelsSlice';
 import { open } from '../slices/modalSlice';
-import { getNewChannels } from '../api/socketApi';
+import { getNewChannels, listenForRemoveChannel } from '../api/socketApi';
 
 const Channels = () => {
   const { t } = useTranslation();
@@ -19,12 +19,10 @@ const Channels = () => {
   const handleRemoveChannel = (id) => {
     dispatch(open({ type: 'removeChannel', extra: { channalId: id } }));
   };
-
   useEffect(() => {
-    // Загружаем начальное состояние каналов с сервера
+    listenForRemoveChannel(dispatch);
     getNewChannels(dispatch);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   const listChannels = channels.map((channel) => (
     <li className="nav-item w-100" key={channel.id}>

@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { addMessages } from '../slices/messagesSlice';
-import { addChannel } from '../slices/channelsSlice';
+import { addChannel, removeChanneFromState } from '../slices/channelsSlice';
 
 const socket = io();
 
@@ -29,4 +29,10 @@ export const getNewChannels = (dispatch) => {
 
 export const removeChannel = (channalId) => {
   socket.emit('removeChannel', { id: channalId });
+};
+
+export const listenForRemoveChannel = (dispatch) => {
+  socket.on('removeChannel', (payload) => {
+    dispatch(removeChanneFromState(payload));
+  });
 };
