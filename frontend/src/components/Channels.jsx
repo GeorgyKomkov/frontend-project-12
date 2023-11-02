@@ -43,7 +43,7 @@ const Channels = () => {
           </Button>
           <Dropdown>
             <Dropdown.Toggle
-              className="flex-grow-0 dropdown-toggle dropdown-toggle-split"
+              className="flex-grow-0 dropdown-toggle-split"
               variant={channel.id === currentChannelId ? 'secondary' : ''}
             />
             <Dropdown.Menu>
