@@ -21,5 +21,13 @@ export default {
       messages_few: '{{count}} сообщения',
       messages_many: '{{count}} сообщений',
     },
+    modal: {
+      addChannel: 'Добавить канал',
+      removeChannel: 'Удалить канал',
+      renameChannel: 'Переименовать канал',
+      remove: 'удалить',
+      send: 'отменить',
+      cancel: 'отправить',
+    },
   },
 };

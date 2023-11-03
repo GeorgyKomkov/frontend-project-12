@@ -1,9 +1,15 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import avatarReg from '../assets/avatarReg.jpg';
+import routes from '../routes.js';
+import { useAuth } from '../hooks/useAuth';
 
 const SignupPage = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -24,8 +30,15 @@ const SignupPage = () => {
         .string()
         .oneOf([yup.ref('password')], 'Пароли должны совпадать'),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const { confirmPassword, ...currentData } = values;
+        const { data } = await axios.post(routes.signupPage(), currentData);
+        auth.login(data);
+        navigate(routes.home);
+      } catch (error) {
+        console.error('Произошла ошибка при отправке формы:', error);
+      }
     },
   });
 
@@ -52,7 +65,7 @@ const SignupPage = () => {
                     value={formik.values.username}
                     isInvalid={formik.errors.username}
                   />
-                  <Form.Label htmlFor="username">Имя пользователя</Form.Label>
+                  <Form.Label>Имя пользователя</Form.Label>
                   <Form.Control.Feedback type="invalid">
                     {formik.errors.username}
                   </Form.Control.Feedback>
@@ -65,11 +78,11 @@ const SignupPage = () => {
                     aria-describedby="passwordHelpBlock"
                     placeholder="Не менее 6 символов"
                     value={formik.values.password}
-                    autocomplete="new-password"
+                    autoComplete="new-password"
                     onChange={formik.handleChange}
                     isInvalid={formik.errors.password}
                   />
-                  <Form.Label htmlFor="password">Пароль</Form.Label>
+                  <Form.Label>Пароль</Form.Label>
                   <Form.Control.Feedback type="invalid">
                     {formik.errors.password}
                   </Form.Control.Feedback>
@@ -86,7 +99,7 @@ const SignupPage = () => {
                     onChange={formik.handleChange}
                     isInvalid={formik.errors.confirmPassword}
                   />
-                  <Form.Label htmlFor="confirmPassword">
+                  <Form.Label>
                     Подтвердите пароль
                   </Form.Label>
                   <Form.Control.Feedback type="invalid">

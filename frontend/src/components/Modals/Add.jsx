@@ -3,10 +3,12 @@ import { useFormik } from 'formik';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 import { close } from '../../slices/modalSlice';
 import { newChannel } from '../../api/socketApi';
 
 const Add = () => {
+  const { t } = useTranslation();
   const inputRef = useRef();
   useEffect(() => {
     inputRef.current.focus();
@@ -39,7 +41,7 @@ const Add = () => {
   return (
     <Modal show={isOpened}>
       <Modal.Header closeButton onHide={hendleClose}>
-        <Modal.Title>Добавить канал</Modal.Title>
+        <Modal.Title>{t('modal.addChannel')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -61,8 +63,8 @@ const Add = () => {
               { formik.errors.body }
             </FormControl.Feedback>
           </FormGroup>
-          <input type="button" className="me-2 btn btn-secondary" value="Отменить" onClick={hendleClose} />
-          <input type="submit" className="btn btn-primary mt-2" value="Отправить" />
+          <input type="button" className="me-2 btn btn-secondary" value={t('modal.send')} onClick={hendleClose} />
+          <input type="submit" className="btn btn-primary" value={t('modal.cancel')} />
         </form>
       </Modal.Body>
     </Modal>

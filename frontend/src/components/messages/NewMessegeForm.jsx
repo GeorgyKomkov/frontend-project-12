@@ -5,11 +5,13 @@ import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import SendMessageIcon from '../../icons/SendMessagesIcon';
 import { newMessage } from '../../socketApi';
+import { useAuth } from '../../hooks/useAuth';
 
 const NewMessegeForm = () => {
   const { t } = useTranslation();
-  const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
-  const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
+  const auth = useAuth();
+  const { currentChannelId } = useSelector((state) => state.channelsInfo);
+  // const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const formik = useFormik({
     initialValues: { messageBody: '' },
     onSubmit: ({ messageBody }, { resetForm }) => {
@@ -17,7 +19,7 @@ const NewMessegeForm = () => {
         newMessage({
           body: messageBody,
           channelId: currentChannelId,
-          username: currentChannel.name,
+          username: auth.user.username,
         });
         resetForm();
       } catch (err) {

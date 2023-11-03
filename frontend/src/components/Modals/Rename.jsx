@@ -41,7 +41,7 @@ const Rename = () => {
   return (
     <Modal show>
       <Modal.Header closeButton onHide={hendleClose}>
-        <Modal.Title>Rename</Modal.Title>
+        <Modal.Title>Переименовать канал</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>

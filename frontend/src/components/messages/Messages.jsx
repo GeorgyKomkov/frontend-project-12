@@ -3,29 +3,30 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import NewMessegeForm from './NewMessegeForm';
 import { getNewMessages } from '../../socketApi';
-import { useAuth } from '../../hooks/useAuth';
+// import { useAuth } from '../../hooks/useAuth';
 
 const Messages = () => {
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const currentName = currentChannel ? currentChannel.name : '';
-  const auth = useAuth();
-  const { username } = auth.user;
+  // const auth = useAuth();
+  // const { username } = auth.user;
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messagesInfo.messages);
   const currentMesseges = messages.filter((messege) => messege.channelId === currentChannelId);
 
+  useEffect(() => {
+    getNewMessages(dispatch);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const listMessages = currentMesseges.map((message) => (
     <div className="text-break mb-2" key={message.id}>
-      <b>{username}</b>
+      <b>{message.username}</b>
       {`: ${message.body}`}
     </div>
   ));
-
-  useEffect(() => {
-    getNewMessages(dispatch);
-  }, [dispatch]);
 
   return (
     <div className="col p-0 h-100">
