@@ -34,8 +34,8 @@ const SignupPage = () => {
       try {
         const { confirmPassword, ...currentData } = values;
         const { data } = await axios.post(routes.signupPage(), currentData);
-        auth.login(data);
-        navigate(routes.home);
+        await auth.login(data);
+        navigate(routes.home());
       } catch (error) {
         console.error('Произошла ошибка при отправке формы:', error);
       }
