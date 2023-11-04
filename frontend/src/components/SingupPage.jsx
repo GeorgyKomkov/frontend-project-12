@@ -30,11 +30,10 @@ const SignupPage = () => {
         .string()
         .oneOf([yup.ref('password')], 'Пароли должны совпадать'),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async ({ username, password }) => {
       try {
-        const { confirmPassword, ...currentData } = values;
-        const { data } = await axios.post(routes.signupPage(), currentData);
-        await auth.login(data);
+        await axios.post(routes.signupPage(), { username, password });
+        await auth.logIn(username, password);
         navigate(routes.home());
       } catch (error) {
         console.error('Произошла ошибка при отправке формы:', error);
