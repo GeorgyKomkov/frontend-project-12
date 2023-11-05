@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   BrowserRouter,
   Routes,
@@ -8,12 +9,13 @@ import {
 } from 'react-router-dom';
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+// import { useDispatch } from 'react-redux';
 import LoginPage from './LoginPage';
 import NotFoundPage from './NotFoundPage';
 import SignupPage from './SingupPage';
 import ChatPage from './ChatPage';
 import routes from '../routes';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth, useSocket } from '../hooks/index.js';
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
@@ -32,6 +34,8 @@ const LogOut = () => {
 };
 
 const App = () => {
+  const socket = useSocket();
+  socket.socketOn();
   const { t } = useTranslation();
   return (
     <BrowserRouter>

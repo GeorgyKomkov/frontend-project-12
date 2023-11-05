@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import avatarReg from '../assets/avatarReg.jpg';
 import routes from '../routes.js';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/index.js';
 
 const SignupPage = () => {
   const auth = useAuth();

@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { close } from '../../slices/modalSlice';
-import { newChannel } from '../../api/socketApi';
+import { useSocket } from '../../hooks/index';
 
 const Add = () => {
   const { t } = useTranslation();
+  const socket = useSocket();
   const inputRef = useRef();
   useEffect(() => {
     inputRef.current.focus();
@@ -32,7 +33,7 @@ const Add = () => {
         .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
     }),
     onSubmit: ({ body }, { resetForm }) => {
-      newChannel(body);
+      socket.newChannel(body);
       resetForm();
       hendleClose();
     },

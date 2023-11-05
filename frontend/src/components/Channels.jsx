@@ -2,11 +2,9 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Dropdown } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import ChannelIcon from '../icons/ChannelIcon';
 import { setCurrentChannel } from '../slices/channelsSlice';
 import { open } from '../slices/modalSlice';
-import { getNewChannels, listenForRemoveChannel, listenForRenameChannel } from '../api/socketApi';
 
 const Channels = () => {
   const { t } = useTranslation();
@@ -22,12 +20,6 @@ const Channels = () => {
   const handleRenameChannel = (id) => {
     dispatch(open({ type: 'renameChannel', extra: { channalId: id } }));
   };
-  useEffect(() => {
-    listenForRemoveChannel(dispatch);
-    getNewChannels(dispatch);
-    listenForRenameChannel(dispatch);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const listChannels = channels.map((channel) => (
     <li className="nav-item w-100" key={channel.id}>

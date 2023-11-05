@@ -1,22 +1,14 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import NewMessegeForm from './NewMessegeForm';
-import { getNewMessages } from '../../socketApi';
 
 const Messages = () => {
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const currentName = currentChannel ? currentChannel.name : '';
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const messages = useSelector((state) => state.messagesInfo.messages);
   const currentMesseges = messages.filter((messege) => messege.channelId === currentChannelId);
-
-  useEffect(() => {
-    getNewMessages(dispatch);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
 
   const listMessages = currentMesseges.map((message) => (
     <div className="text-break mb-2" key={message.id}>

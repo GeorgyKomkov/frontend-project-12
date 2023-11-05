@@ -4,11 +4,12 @@ import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { close } from '../../slices/modalSlice';
-import { renameChannel } from '../../api/socketApi';
+import { useSocket } from '../../hooks';
 
 const Rename = () => {
   const channalId = useSelector((state) => state.modal.extra.channalId);
   const dispatch = useDispatch();
+  const socket = useSocket();
   const hendleClose = () => dispatch(close());
 
   const existingChannels = useSelector((state) => state.channelsInfo.channels
@@ -28,7 +29,7 @@ const Rename = () => {
         .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
     }),
     onSubmit: ({ body }) => {
-      renameChannel(channalId, body);
+      socket.renameChannel(channalId, body);
       hendleClose();
     },
   });

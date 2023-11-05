@@ -2,8 +2,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth.js';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../hooks/index.js';
 import avatar from '../assets/avatar.jpg';
 import routes from '../routes.js';
 
@@ -12,7 +12,6 @@ const LoginPage = () => {
   const auth = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -98,7 +97,7 @@ const LoginPage = () => {
             <div className="card-footer p-4">
               <div className="text-center">
                 <span>{t('noAccountQM')}</span>
-                <a href="/signup">{t('registration')}</a>
+                <Link to={routes.signup()}>{t('registration')}</Link>
               </div>
             </div>
           </div>

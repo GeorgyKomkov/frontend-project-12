@@ -4,19 +4,18 @@ import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import SendMessageIcon from '../../icons/SendMessagesIcon';
-import { newMessage } from '../../socketApi';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth, useSocket } from '../../hooks';
 
 const NewMessegeForm = () => {
   const { t } = useTranslation();
   const auth = useAuth();
+  const socket = useSocket();
   const { currentChannelId } = useSelector((state) => state.channelsInfo);
-  // const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const formik = useFormik({
     initialValues: { messageBody: '' },
     onSubmit: ({ messageBody }, { resetForm }) => {
       try {
-        newMessage({
+        socket.newMessage({
           body: messageBody,
           channelId: currentChannelId,
           username: auth.user.username,

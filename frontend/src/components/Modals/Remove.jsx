@@ -1,16 +1,16 @@
 import { Modal, FormGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { close } from '../../slices/modalSlice';
-import { removeChannel } from '../../api/socketApi';
+import { useSocket } from '../../hooks';
 
 const Remove = () => {
   const dispatch = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channalId = useSelector((state) => state.modal.extra.channalId);
   const hendleClose = () => dispatch(close());
-  // const onSubmit = removeChannel(channalId);
+  const sokcet = useSocket();
   const handleRemove = () => {
-    removeChannel(channalId);
+    sokcet.removeChannel(channalId);
     dispatch(close());
   };
 

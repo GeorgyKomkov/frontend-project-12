@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Channels from './Channels';
 import Messages from './messages/Messages';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks';
 import getDataChannels from '../api/getDataChannels';
 import getModalComponent from './Modals/index';
 
@@ -16,7 +16,7 @@ const ChatPage = () => {
   useEffect(() => {
     dispatch(getDataChannels(dispatch, header));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
