@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks';
 
@@ -28,9 +29,14 @@ const Rename = () => {
         .max(20, 'максимум 20 символов')
         .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
     }),
-    onSubmit: ({ body }) => {
-      socket.renameChannel(channalId, body);
-      hendleClose();
+    onSubmit: async ({ body }) => {
+      try {
+        socket.renameChannel(channalId, body);
+        toast.success('Канал переименован');
+        hendleClose();
+      } catch (error) {
+        toast.error('Ошибка с переименованием канала');
+      }
     },
   });
 

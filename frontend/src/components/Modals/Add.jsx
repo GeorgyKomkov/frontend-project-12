@@ -4,6 +4,7 @@ import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks/index';
 
@@ -32,10 +33,17 @@ const Add = () => {
         .max(20, 'максимум 20 символов')
         .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
     }),
-    onSubmit: ({ body }, { resetForm }) => {
-      socket.newChannel(body);
-      resetForm();
-      hendleClose();
+    onSubmit: async ({ body }, { resetForm }) => {
+      try {
+        await socket.newChannel(body);
+        console.log('111');
+        toast.success('Операция выполнена успешно!');
+        console.log('111');
+        resetForm();
+        hendleClose();
+      } catch (error) {
+        toast.error('ошибочка вышла с  добавлением сейчас исправим');
+      }
     },
   });
 

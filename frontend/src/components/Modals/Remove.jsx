@@ -1,5 +1,6 @@
 import { Modal, FormGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks';
 
@@ -9,9 +10,14 @@ const Remove = () => {
   const channalId = useSelector((state) => state.modal.extra.channalId);
   const hendleClose = () => dispatch(close());
   const sokcet = useSocket();
-  const handleRemove = () => {
-    sokcet.removeChannel(channalId);
-    dispatch(close());
+  const handleRemove = async () => {
+    try {
+      sokcet.removeChannel(channalId);
+      toast.success('Канал удален');
+      dispatch(close());
+    } catch (error) {
+      toast.error('Ошибка с удалением канала');
+    }
   };
 
   return (

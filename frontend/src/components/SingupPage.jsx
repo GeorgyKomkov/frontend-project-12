@@ -3,11 +3,13 @@ import * as yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import avatarReg from '../assets/avatarReg.jpg';
 import routes from '../routes.js';
 import { useAuth } from '../hooks/index.js';
 
 const SignupPage = () => {
+  const { t } = useTranslation();
   const auth = useAuth();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -50,10 +52,10 @@ const SignupPage = () => {
               <img
                 src={avatarReg}
                 className="rounded-circle"
-                alt="Регистрация"
+                alt={t('registration')}
               />
               <Form className="w-50" onSubmit={formik.handleSubmit}>
-                <h1 className="text-center mb-4">Регистрация</h1>
+                <h1 className="text-center mb-4">{t('registration')}</h1>
                 <Form.Group className="form-floating mb-3">
                   <Form.Control
                     name="username"
@@ -64,7 +66,7 @@ const SignupPage = () => {
                     value={formik.values.username}
                     isInvalid={formik.errors.username}
                   />
-                  <Form.Label>Имя пользователя</Form.Label>
+                  <Form.Label>{t('userName')}</Form.Label>
                   <Form.Control.Feedback type="invalid">
                     {formik.errors.username}
                   </Form.Control.Feedback>
@@ -81,7 +83,7 @@ const SignupPage = () => {
                     onChange={formik.handleChange}
                     isInvalid={formik.errors.password}
                   />
-                  <Form.Label>Пароль</Form.Label>
+                  <Form.Label>{t('password')}</Form.Label>
                   <Form.Control.Feedback type="invalid">
                     {formik.errors.password}
                   </Form.Control.Feedback>
@@ -99,7 +101,7 @@ const SignupPage = () => {
                     isInvalid={formik.errors.confirmPassword}
                   />
                   <Form.Label>
-                    Подтвердите пароль
+                    {t('confirmPassword')}
                   </Form.Label>
                   <Form.Control.Feedback type="invalid">
                     {formik.errors.confirmPassword}
@@ -111,7 +113,7 @@ const SignupPage = () => {
                   variant="outline-primary"
                   className="w-100"
                 >
-                  Зарегистрироваться
+                  {t('register')}
                 </Button>
               </Form>
             </div>
