@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks';
+import filterWords from '../../filterWords';
 
 const Rename = () => {
   const { t } = useTranslation();
@@ -32,8 +33,9 @@ const Rename = () => {
         .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
     }),
     onSubmit: async ({ body }) => {
+      const filteredRename = filterWords(body);
       try {
-        socket.renameChannel(channalId, body);
+        socket.renameChannel(channalId, filteredRename);
         toast.success(t('notifications.renameChannel'));
         hendleClose();
       } catch (error) {

@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import SendMessageIcon from '../../icons/SendMessagesIcon';
 import { useAuth, useSocket } from '../../hooks';
+import filterWords from '../../filterWords';
 
 const NewMessegeForm = () => {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ const NewMessegeForm = () => {
     onSubmit: ({ messageBody }, { resetForm }) => {
       try {
         socket.newMessage({
-          body: messageBody,
+          body: filterWords(messageBody),
           channelId: currentChannelId,
           username: auth.user.username,
         });

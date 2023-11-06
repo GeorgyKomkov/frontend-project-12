@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks/index';
+import filterWords from '../../filterWords';
 
 const Add = () => {
   const { t } = useTranslation();
@@ -34,8 +35,9 @@ const Add = () => {
         .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
     }),
     onSubmit: async ({ body }, { resetForm }) => {
+      const filteredNameChannel = filterWords(body);
       try {
-        await socket.newChannel(body);
+        await socket.newChannel(filteredNameChannel);
         toast.success(t('notifications.addChannel'));
         resetForm();
         hendleClose();
