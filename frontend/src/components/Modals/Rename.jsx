@@ -4,10 +4,12 @@ import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks';
 
 const Rename = () => {
+  const { t } = useTranslation();
   const channalId = useSelector((state) => state.modal.extra.channalId);
   const dispatch = useDispatch();
   const socket = useSocket();
@@ -32,10 +34,10 @@ const Rename = () => {
     onSubmit: async ({ body }) => {
       try {
         socket.renameChannel(channalId, body);
-        toast.success('Канал переименован');
+        toast.success(t('notifications.renameChannel'));
         hendleClose();
       } catch (error) {
-        toast.error('Ошибка с переименованием канала');
+        toast.error(t('notifications.errorRenameChannel'));
       }
     },
   });
@@ -48,7 +50,7 @@ const Rename = () => {
   return (
     <Modal show>
       <Modal.Header closeButton onHide={hendleClose}>
-        <Modal.Title>Переименовать канал</Modal.Title>
+        <Modal.Title>{t('modal.renameChannel')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -70,8 +72,8 @@ const Rename = () => {
               { formik.errors.body }
             </FormControl.Feedback>
           </FormGroup>
-          <input type="button" className="me-2 btn btn-secondary" value="отменить" onClick={hendleClose} />
-          <input type="submit" className="btn btn-primary" value="отправить" />
+          <input type="button" className="me-2 btn btn-secondary" value={t('modal.send')} onClick={hendleClose} />
+          <input type="submit" className="btn btn-primary" value={t('modal.cancel')} />
         </form>
       </Modal.Body>
     </Modal>

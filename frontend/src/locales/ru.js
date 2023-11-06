@@ -19,6 +19,15 @@ export default {
     newMessagePlaceholder: 'Введите сообщение...',
     send: 'Отправить',
 
+    notifications: {
+      addChannel: 'Канал создан',
+      removeChannel: 'Канал удален',
+      renameChannel: 'Канал переименован',
+      errorAddChannel: 'Возникла ошибка при создании канала',
+      errorRemoveChannel: 'Возникла ошибка при удалении канала',
+      errorRenameChannel: 'Возникла ошибка при переименовании канала',
+    },
+
     messagesCounter: {
       messages_zero: 'Нет сообщений',
       messages_one: '{{count}} сообщение',

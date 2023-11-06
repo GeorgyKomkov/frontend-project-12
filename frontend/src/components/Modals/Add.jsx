@@ -36,13 +36,11 @@ const Add = () => {
     onSubmit: async ({ body }, { resetForm }) => {
       try {
         await socket.newChannel(body);
-        console.log('111');
-        toast.success('Операция выполнена успешно!');
-        console.log('111');
+        toast.success(t('notifications.addChannel'));
         resetForm();
         hendleClose();
       } catch (error) {
-        toast.error('ошибочка вышла с  добавлением сейчас исправим');
+        toast.error(t('notifications.errorAddChannel'));
       }
     },
   });
