@@ -18,8 +18,8 @@ const LoginPage = () => {
       password: '',
     },
     validationSchema: yup.object().shape({
-      username: yup.string().required('Это поле обязательно'),
-      password: yup.string().required('Это поле обязательно'),
+      username: yup.string().required('Это поле обязательно').trim(),
+      password: yup.string().required('Это поле обязательно').trim(),
     }),
     onSubmit: async ({ username, password }) => {
       try {
@@ -28,8 +28,15 @@ const LoginPage = () => {
           from: { pathname: routes.home() },
         };
         navigate(from);
-      } catch (err) {
-        console.log('ОШИБКА ', err);
+      } catch (error) {
+        if (error.response.status === 401) {
+          formik.setErrors({
+            username: 'Неверные имя пользователя или пароль',
+            password: 'Неверные имя пользователя или пароль',
+          });
+        } else {
+          console.error(error);
+        }
       }
     },
   });

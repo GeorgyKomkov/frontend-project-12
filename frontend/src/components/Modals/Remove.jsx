@@ -1,4 +1,4 @@
-import { Modal, FormGroup } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,6 @@ const Remove = () => {
   const dispatch = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channalId = useSelector((state) => state.modal.extra.channalId);
-  const hendleClose = () => dispatch(close());
   const sokcet = useSocket();
   const handleRemove = async () => {
     try {
@@ -24,26 +23,14 @@ const Remove = () => {
 
   return (
     <Modal show={isOpened}>
-      <Modal.Header closeButton onHide={hendleClose}>
+      <Modal.Header closeButton>
         <Modal.Title>{t('modal.removeChannel')}</Modal.Title>
       </Modal.Header>
-
       <Modal.Body>
-        <form onSubmit={handleRemove}>
-          <FormGroup>
-            <input
-              type="button"
-              className="me-2 btn btn-secondary"
-              value={t('modal.send')}
-              onClick={hendleClose}
-            />
-            <input
-              type="submit"
-              className="btn btn-danger mt-2"
-              value={t('modal.remove')}
-            />
-          </FormGroup>
-        </form>
+        <p className="lead">Уверены?</p>
+        <div className="d-flex justify-content-end">
+          <Button variant="danger" onClick={handleRemove}>{t('modal.remove')}</Button>
+        </div>
       </Modal.Body>
     </Modal>
   );

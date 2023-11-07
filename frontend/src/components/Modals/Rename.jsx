@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
-import { Modal, FormGroup, FormControl } from 'react-bootstrap';
+import { Modal, Form, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -56,9 +56,9 @@ const Rename = () => {
       </Modal.Header>
 
       <Modal.Body>
-        <form onSubmit={formik.handleSubmit}>
-          <FormGroup>
-            <FormControl
+        <Form onSubmit={formik.handleSubmit}>
+          <Form.Group>
+            <Form.Control
               required
               ref={inputRef}
               onChange={formik.handleChange}
@@ -66,17 +66,18 @@ const Rename = () => {
               value={formik.values.body}
               data-testid="input-body"
               name="body"
-              isInvalid={
-                formik.touched.body && formik.errors.body
-              }
+              isInvalid={formik.errors.body}
             />
-            <FormControl.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid">
               { formik.errors.body }
-            </FormControl.Feedback>
-          </FormGroup>
-          <input type="button" className="me-2 btn btn-secondary" value={t('modal.send')} onClick={hendleClose} />
-          <input type="submit" className="btn btn-primary" value={t('modal.cancel')} />
-        </form>
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={hendleClose}>{t('modal.send')}</Button>
+            <Button type="submit" variant="primary" disabled={formik.isSubmitting}>{t('modal.cancel')}</Button>
+          </Modal.Footer>
+
+        </Form>
       </Modal.Body>
     </Modal>
   );

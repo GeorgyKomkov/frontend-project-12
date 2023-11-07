@@ -38,7 +38,13 @@ const SignupPage = () => {
         await auth.logIn(username, password);
         navigate(routes.home());
       } catch (error) {
-        console.error('Произошла ошибка при отправке формы:', error);
+        if (error.response.status === 409) {
+          formik.setErrors({
+            username: 'Такой пользователь уже существует',
+          });
+        } else {
+          console.error(error);
+        }
       }
     },
   });
