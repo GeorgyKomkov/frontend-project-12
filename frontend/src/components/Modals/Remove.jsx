@@ -11,6 +11,7 @@ const Remove = () => {
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channalId = useSelector((state) => state.modal.extra.channalId);
   const sokcet = useSocket();
+  const hendleClose = () => dispatch(close());
   const handleRemove = async () => {
     try {
       sokcet.removeChannel(channalId);
@@ -22,12 +23,12 @@ const Remove = () => {
   };
 
   return (
-    <Modal show={isOpened}>
-      <Modal.Header closeButton>
+    <Modal show={isOpened} centered>
+      <Modal.Header closeButton onHide={hendleClose}>
         <Modal.Title>{t('modal.removeChannel')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="lead">Уверены?</p>
+        <p className="lead">{t('modal.sure')}</p>
         <div className="d-flex justify-content-end">
           <Button variant="danger" onClick={handleRemove}>{t('modal.remove')}</Button>
         </div>

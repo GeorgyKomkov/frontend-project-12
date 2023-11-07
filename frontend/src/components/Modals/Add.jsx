@@ -43,13 +43,13 @@ const Add = () => {
       } catch (error) {
         toast.error(t('notifications.errorAddChannel'));
       } finally {
-        hendleClose(); // Закрываем модальное окно после успешной отправки или ошибки
+        hendleClose();
       }
     },
   });
 
   return (
-    <Modal show={isOpened}>
+    <Modal show={isOpened} centered>
       <Modal.Header closeButton onHide={hendleClose}>
         <Modal.Title>{t('modal.addChannel')}</Modal.Title>
       </Modal.Header>
