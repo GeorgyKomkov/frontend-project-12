@@ -12,8 +12,8 @@ const NotFoundPage = () => {
       />
       <h1 className="h4 text-muted">{t('notFound')}</h1>
       <p className="text-muted">
-        {t('redirectTextBegin')}
-        <a href="/">{t('redirectTextEnd')}</a>
+        {t('returnToHome')}
+        <a href="/">{t('toMain')}</a>
       </p>
     </div>
   );

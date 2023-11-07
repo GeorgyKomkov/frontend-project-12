@@ -96,6 +96,7 @@ const LoginPage = () => {
                   type="submit"
                   variant="outline-primary"
                   className="w-100 mb-3"
+                  disabled={formik.isSubmitting}
                 >
                   {t('loginHeader')}
                 </Button>

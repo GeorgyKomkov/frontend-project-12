@@ -118,6 +118,7 @@ const SignupPage = () => {
                   type="submit"
                   variant="outline-primary"
                   className="w-100"
+                  disabled={formik.isSubmitting}
                 >
                   {t('register')}
                 </Button>

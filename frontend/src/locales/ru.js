@@ -13,11 +13,12 @@ export default {
     registration: 'Регистрация',
     register: 'Зарегистрироваться',
     mainHeader: 'Hexlet Chat',
-    redirectTextEnd: 'Вернутся',
+    returnToHome: 'Но вы можете перейти ',
     channels: 'Каналы',
     newMessage: 'Новое сообщение',
     newMessagePlaceholder: 'Введите сообщение...',
     send: 'Отправить',
+    toMain: 'на главную страницу',
 
     notifications: {
       addChannel: 'Канал создан',
