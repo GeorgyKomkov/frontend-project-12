@@ -87,7 +87,7 @@ const LoginPage = () => {
                     }
                   />
                   <Form.Label>{t('password')}</Form.Label>
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="invalid-tooltip">
                     {formik.errors.password}
                   </Form.Control.Feedback>
                 </Form.Group>

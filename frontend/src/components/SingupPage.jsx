@@ -73,7 +73,7 @@ const SignupPage = () => {
                     isInvalid={formik.errors.username}
                   />
                   <Form.Label>{t('userName')}</Form.Label>
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="invalid-tooltip">
                     {formik.errors.username}
                   </Form.Control.Feedback>
                 </Form.Group>
@@ -90,7 +90,7 @@ const SignupPage = () => {
                     isInvalid={formik.errors.password}
                   />
                   <Form.Label>{t('password')}</Form.Label>
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="invalid-tooltip">
                     {formik.errors.password}
                   </Form.Control.Feedback>
                 </Form.Group>
@@ -109,7 +109,7 @@ const SignupPage = () => {
                   <Form.Label>
                     {t('confirmPassword')}
                   </Form.Label>
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="invalid-tooltip">
                     {formik.errors.confirmPassword}
                   </Form.Control.Feedback>
                 </Form.Group>
