@@ -68,7 +68,7 @@ const Rename = () => {
               name="body"
               isInvalid={formik.errors.body}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" className="invalid-tooltip">
               { formik.errors.body }
             </Form.Control.Feedback>
           </Form.Group>
