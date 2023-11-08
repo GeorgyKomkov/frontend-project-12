@@ -28,7 +28,7 @@ const Remove = () => {
         <Modal.Title>{t('modal.removeChannel')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="lead">{t('modal.sure')}</p>
+        <p className="lead">{t('modal.confirmSure')}</p>
         <div className="d-flex justify-content-end">
           <Button variant="danger" onClick={handleRemove}>{t('modal.remove')}</Button>
         </div>

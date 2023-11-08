@@ -43,7 +43,7 @@ export default {
       remove: 'удалить',
       send: 'отменить',
       cancel: 'отправить',
-      sure: 'Уверены ?',
+      confirmSure: 'Уверены ?',
     },
   },
 };
