@@ -69,7 +69,7 @@ const Add = () => {
                 formik.touched.body && formik.errors.body
               }
             />
-            <Form.Control.Feedback type="invalid" className="invalid-tooltip">
+            <Form.Control.Feedback type="invalid">
               { formik.errors.body }
             </Form.Control.Feedback>
           </Form.Group>
