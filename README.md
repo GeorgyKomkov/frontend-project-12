@@ -2,7 +2,7 @@
 
 Чат
 
-Ссылка на сайт: (https://frontend-project-12-ojji4ed3k-georgykomkov.vercel.app)
+Ссылка на сайт: (https://frontend-project-12-j1pr57ykc-georgykomkov.vercel.app/)
 
 
 ## Setup
