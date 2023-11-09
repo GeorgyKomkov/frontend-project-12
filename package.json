@@ -12,7 +12,6 @@
   "author": "https://github.com/GeorgyKomkov",
   "license": "ISC",
   "dependencies": {
-    "@hexlet/chat-server": "^1.1.8",
-    "lodash.uniqueid": "^4.0.1"
+    "@hexlet/chat-server": "^1.1.8"
   }
 }
