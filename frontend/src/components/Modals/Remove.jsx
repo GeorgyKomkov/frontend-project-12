@@ -2,11 +2,13 @@ import { Modal, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useRollbar } from '@rollbar/react';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks';
 
 const Remove = () => {
   const { t } = useTranslation();
+  const rollbar = useRollbar();
   const dispatch = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channalId = useSelector((state) => state.modal.extra.channalId);
@@ -19,6 +21,7 @@ const Remove = () => {
       dispatch(close());
     } catch (error) {
       toast.error(t('notifications.errorRemoveChannel'));
+      rollbar.error('RemoveChannel', error);
     }
   };
 

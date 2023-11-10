@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { useRollbar } from '@rollbar/react';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks/index';
 import filterWords from '../../filterWords';
@@ -23,6 +24,7 @@ const Add = () => {
   });
   const dispath = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened);
+  const rollbar = useRollbar();
   const hendleClose = () => dispath(close());
   const formik = useFormik({
     initialValues: { body: '' },
@@ -42,6 +44,7 @@ const Add = () => {
         resetForm();
       } catch (error) {
         toast.error(t('notifications.errorAddChannel'));
+        rollbar.error('AddChannel', error);
       } finally {
         hendleClose();
       }

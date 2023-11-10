@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useRollbar } from '@rollbar/react';
 import { close } from '../../slices/modalSlice';
 import { useSocket } from '../../hooks';
 import filterWords from '../../filterWords';
@@ -14,6 +15,7 @@ const Rename = () => {
   const channalId = useSelector((state) => state.modal.extra.channalId);
   const dispatch = useDispatch();
   const socket = useSocket();
+  const rollbar = useRollbar();
   const hendleClose = () => dispatch(close());
 
   const existingChannels = useSelector((state) => state.channelsInfo.channels
@@ -40,6 +42,7 @@ const Rename = () => {
         hendleClose();
       } catch (error) {
         toast.error(t('notifications.errorRenameChannel'));
+        rollbar.error('RenameChannel', error);
       }
     },
   });
