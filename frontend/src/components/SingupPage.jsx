@@ -4,26 +4,19 @@ import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import avatarReg from '../assets/avatarReg.jpg';
 import routes from '../routes.js';
 import { useAuth } from '../hooks/index.js';
 
 const SignupPage = () => {
   const inputName = useRef(null);
-  const [regFailed, setRegFailed] = useState(false);
 
   useEffect(() => {
     if (inputName.current) {
       inputName.current.focus();
     }
   }, []);
-
-  useEffect(() => {
-    if (inputName.current && regFailed) {
-      inputName.current.select();
-    }
-  }, [regFailed]);
 
   const { t } = useTranslation();
   const auth = useAuth();
@@ -50,27 +43,20 @@ const SignupPage = () => {
     }),
     onSubmit: async ({ username, password }) => {
       try {
-        setRegFailed(false);
         await axios.post(routes.signupPage(), { username, password });
         await auth.logIn(username, password);
         navigate(routes.home());
       } catch (error) {
         if (error.response.status === 409) {
-          setRegFailed(true);
           formik.setErrors({
             username: 'Такой пользователь уже существует',
           });
         } else {
-          setRegFailed(true);
           console.error(error);
         }
       }
     },
   });
-
-  const isInvalidUsername = formik.touched.username && formik.errors.username;
-  const isInvalidPassword = formik.touched.password && formik.errors.password;
-  const isInvalidConfirmPassword = formik.touched.confirmPassword && formik.errors.confirmPassword;
 
   return (
     <div className="container-fluid h-100">
@@ -93,7 +79,7 @@ const SignupPage = () => {
                     placeholder={t('placeholder.username')}
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    isInvalid={regFailed || isInvalidUsername}
+                    isInvalid={formik.errors.username}
                     ref={inputName}
                   />
                   <Form.Label htmlFor="username">{t('userName')}</Form.Label>
@@ -111,7 +97,7 @@ const SignupPage = () => {
                     value={formik.values.password}
                     autoComplete="new-password"
                     onChange={formik.handleChange}
-                    isInvalid={regFailed || isInvalidPassword}
+                    isInvalid={formik.errors.password}
                   />
                   <Form.Label>{t('password')}</Form.Label>
                   <div className="invalid-tooltip">
@@ -128,8 +114,7 @@ const SignupPage = () => {
                     placeholder={t('placeholder.confirmPassword')}
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
-                    isInvalid={regFailed || isInvalidConfirmPassword}
-                    isValid={formik.touched.confirmPassword && !formik.errors.confirmPassword}
+                    isInvalid={formik.errors.confirmPassword}
                   />
                   <Form.Label>
                     {t('confirmPassword')}
