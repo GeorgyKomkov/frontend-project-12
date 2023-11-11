@@ -27,7 +27,7 @@ const SignupPage = () => {
       password: yup
         .string()
         .required(t('validation.emptyField'))
-        .min(6, 'validation.minLengthPassword'),
+        .min(6, t('validation.minLengthPassword')),
       confirmPassword: yup
         .string()
         .oneOf([yup.ref('password')], t('validation.passwordMatch')),
