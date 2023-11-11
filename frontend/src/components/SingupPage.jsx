@@ -21,7 +21,7 @@ const SignupPage = () => {
     validationSchema: yup.object().shape({
       username: yup
         .string()
-        .required('validation.emptyField')
+        .required(t('validation.emptyField'))
         .min(3, t('validation.minMaxsimSymbols'))
         .max(20, t('validation.minMaxsimSymbols')),
       password: yup
@@ -70,12 +70,12 @@ const SignupPage = () => {
                     placeholder={t('validation.minMaxsimSymbols')}
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    isInvalid={formik.errors.username}
+                    isInvalid={!!formik.errors.username}
                   />
                   <Form.Label>{t('userName')}</Form.Label>
-                  <div className="invalid-tooltip">
+                  <Form.Control.Feedback type="invalid">
                     {formik.errors.username}
-                  </div>
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="form-floating mb-3" controlId="password">
