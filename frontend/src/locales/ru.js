@@ -33,6 +33,7 @@ export default {
       emptyField: 'обязательное поле',
       minLengthPassword: 'Не менее 6 символов',
       passwordMatch: 'Пароли должны совпадать',
+      uniqueness: 'Должно быть уникальным',
     },
 
     notifications: {

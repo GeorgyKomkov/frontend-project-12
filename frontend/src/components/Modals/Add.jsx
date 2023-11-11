@@ -14,10 +14,6 @@ const Add = () => {
   const { t } = useTranslation();
   const socket = useSocket();
   const inputRef = useRef();
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-  // получаем массив с именами существующих канналов
   // eslint-disable-next-line arrow-body-style
   const existingChannels = useSelector((state) => {
     return state.channelsInfo.channels.map((channel) => channel.name);
@@ -26,18 +22,29 @@ const Add = () => {
   const isOpened = useSelector((state) => state.modal.isOpened);
   const rollbar = useRollbar();
   const hendleClose = () => dispath(close());
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   const formik = useFormik({
     initialValues: { body: '' },
+
     validationSchema: yup.object().shape({
       body: yup
         .string()
-        .required('обязательное поле')
-        .min(3, 'минимум 3 символа')
-        .max(20, 'максимум 20 символов')
-        .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
+        .required(t('validation.emptyField'))
+        .min(3, t('validation.minMaxsimSymbols'))
+        .max(20, t('validation.minMaxsimSymbols'))
+        .test('is-unique', t('validation.uniqueness'), (value) => !existingChannels.includes(value)),
     }),
+    validateOnBlur: false,
+    validateOnChange: false,
     onSubmit: async ({ body }, { resetForm }) => {
       const filteredNameChannel = filterWords(body);
+
       try {
         await socket.newChannel(filteredNameChannel);
         toast.success(t('notifications.addChannel'));
