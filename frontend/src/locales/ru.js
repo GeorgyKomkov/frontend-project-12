@@ -20,6 +20,14 @@ export default {
     send: 'Отправить',
     toMain: 'на главную страницу',
 
+    placeholders: {
+      login: 'Ваш ник',
+      username: 'Имя пользователя',
+      password: 'Пароль',
+      confirmPassword: 'Подтвердите пароль',
+      newMessage: 'Введите сообщение...',
+    },
+
     validation: {
       minMaxsimSymbols: 'От 3 до 20 символов',
       emptyField: 'обязательное поле',

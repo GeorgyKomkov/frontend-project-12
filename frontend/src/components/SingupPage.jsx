@@ -4,11 +4,27 @@ import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useRef, useState } from 'react';
 import avatarReg from '../assets/avatarReg.jpg';
 import routes from '../routes.js';
 import { useAuth } from '../hooks/index.js';
 
 const SignupPage = () => {
+  const inputName = useRef(null);
+  const [regFailed, setRegFailed] = useState(false);
+
+  useEffect(() => {
+    if (inputName.current) {
+      inputName.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (inputName.current && regFailed) {
+      inputName.current.select();
+    }
+  }, [regFailed]);
+
   const { t } = useTranslation();
   const auth = useAuth();
   const navigate = useNavigate();
@@ -34,20 +50,27 @@ const SignupPage = () => {
     }),
     onSubmit: async ({ username, password }) => {
       try {
+        setRegFailed(false);
         await axios.post(routes.signupPage(), { username, password });
         await auth.logIn(username, password);
         navigate(routes.home());
       } catch (error) {
         if (error.response.status === 409) {
+          setRegFailed(true);
           formik.setErrors({
             username: 'Такой пользователь уже существует',
           });
         } else {
+          setRegFailed(true);
           console.error(error);
         }
       }
     },
   });
+
+  const isInvalidUsername = formik.touched.username && formik.errors.username;
+  const isInvalidPassword = formik.touched.password && formik.errors.password;
+  const isInvalidConfirmPassword = formik.touched.confirmPassword && formik.errors.confirmPassword;
 
   return (
     <div className="container-fluid h-100">
@@ -67,15 +90,16 @@ const SignupPage = () => {
                     name="username"
                     autoComplete="username"
                     id="username"
-                    placeholder={t('validation.minMaxsimSymbols')}
+                    placeholder={t('placeholder.username')}
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    isInvalid={!!formik.errors.username}
+                    isInvalid={regFailed || isInvalidUsername}
+                    ref={inputName}
                   />
-                  <Form.Label>{t('userName')}</Form.Label>
-                  <Form.Control.Feedback type="invalid">
-                    {formik.errors.username}
-                  </Form.Control.Feedback>
+                  <Form.Label htmlFor="username">{t('userName')}</Form.Label>
+                  <div className="invalid-tooltip">
+                    {formik.errors.username }
+                  </div>
                 </Form.Group>
 
                 <Form.Group className="form-floating mb-3" controlId="password">
@@ -83,11 +107,11 @@ const SignupPage = () => {
                     type="password"
                     name="password"
                     aria-describedby="passwordHelpBlock"
-                    placeholder={t('validation.minLengthPassword')}
+                    placeholder={t('placeholder.password')}
                     value={formik.values.password}
                     autoComplete="new-password"
                     onChange={formik.handleChange}
-                    isInvalid={formik.errors.password}
+                    isInvalid={regFailed || isInvalidPassword}
                   />
                   <Form.Label>{t('password')}</Form.Label>
                   <div className="invalid-tooltip">
@@ -101,10 +125,11 @@ const SignupPage = () => {
                   <Form.Control
                     type="password"
                     name="confirmPassword"
-                    placeholder={t('validation.passwordMatch')}
+                    placeholder={t('placeholder.confirmPassword')}
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
-                    isInvalid={formik.errors.confirmPassword}
+                    isInvalid={regFailed || isInvalidConfirmPassword}
+                    isValid={formik.touched.confirmPassword && !formik.errors.confirmPassword}
                   />
                   <Form.Label>
                     {t('confirmPassword')}
