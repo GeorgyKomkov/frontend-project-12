@@ -21,16 +21,16 @@ const SignupPage = () => {
     validationSchema: yup.object().shape({
       username: yup
         .string()
-        .required('обязательное поле')
-        .min(3, 'От 3 до 20 символов')
-        .max(20, 'От 3 до 20 символов'),
+        .required('validation.emptyField')
+        .min(3, t('validation.minMaxsimSymbols'))
+        .max(20, t('validation.minMaxsimSymbols')),
       password: yup
         .string()
-        .required('обязательное поле')
-        .min(6, 'Не менее 6 символов'),
+        .required(t('validation.emptyField'))
+        .min(6, 'validation.minLengthPassword'),
       confirmPassword: yup
         .string()
-        .oneOf([yup.ref('password')], 'Пароли должны совпадать'),
+        .oneOf([yup.ref('password')], t('validation.passwordMatch')),
     }),
     onSubmit: async ({ username, password }) => {
       try {

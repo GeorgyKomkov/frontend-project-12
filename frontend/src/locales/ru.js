@@ -20,6 +20,13 @@ export default {
     send: 'Отправить',
     toMain: 'на главную страницу',
 
+    validation: {
+      minMaxsimSymbols: 'От 3 до 20 символов',
+      emptyField: 'обязательное поле',
+      minLengthPassword: 'Не менее 6 символов',
+      passwordMatch: 'Пароли должны совпадать',
+    },
+
     notifications: {
       addChannel: 'Канал создан',
       removeChannel: 'Канал удален',
