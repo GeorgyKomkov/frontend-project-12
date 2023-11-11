@@ -67,15 +67,15 @@ const SignupPage = () => {
                     name="username"
                     autoComplete="username"
                     id="username"
-                    placeholder="От 3 до 20 символов"
+                    placeholder={t('validation.minMaxsimSymbols')}
                     onChange={formik.handleChange}
                     value={formik.values.username}
                     isInvalid={formik.errors.username}
                   />
                   <Form.Label>{t('userName')}</Form.Label>
-                  <Form.Control.Feedback type="invalid" className="invalid-tooltip">
+                  <div className="invalid-tooltip">
                     {formik.errors.username}
-                  </Form.Control.Feedback>
+                  </div>
                 </Form.Group>
 
                 <Form.Group className="form-floating mb-3" controlId="password">
@@ -83,16 +83,16 @@ const SignupPage = () => {
                     type="password"
                     name="password"
                     aria-describedby="passwordHelpBlock"
-                    placeholder="Не менее 6 символов"
+                    placeholder={t('validation.minLengthPassword')}
                     value={formik.values.password}
                     autoComplete="new-password"
                     onChange={formik.handleChange}
                     isInvalid={formik.errors.password}
                   />
                   <Form.Label>{t('password')}</Form.Label>
-                  <Form.Control.Feedback type="invalid" className="invalid-tooltip">
+                  <div className="invalid-tooltip">
                     {formik.errors.password}
-                  </Form.Control.Feedback>
+                  </div>
                 </Form.Group>
                 <Form.Group
                   className="form-floating mb-4"
@@ -101,7 +101,7 @@ const SignupPage = () => {
                   <Form.Control
                     type="password"
                     name="confirmPassword"
-                    placeholder="Подтвердите пароль"
+                    placeholder={t('validation.passwordMatch')}
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
                     isInvalid={formik.errors.confirmPassword}
@@ -109,9 +109,9 @@ const SignupPage = () => {
                   <Form.Label>
                     {t('confirmPassword')}
                   </Form.Label>
-                  <Form.Control.Feedback type="invalid" className="invalid-tooltip">
+                  <div className="invalid-tooltip">
                     {formik.errors.confirmPassword}
-                  </Form.Control.Feedback>
+                  </div>
                 </Form.Group>
 
                 <Button
