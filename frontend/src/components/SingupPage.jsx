@@ -22,8 +22,8 @@ const SignupPage = () => {
       username: yup
         .string()
         .required('обязательное поле')
-        .min(3, 'минимум 3 символа')
-        .max(20, 'максимум 20 символов'),
+        .min(3, 'От 3 до 20 символов')
+        .max(20, 'От 3 до 20 символов'),
       password: yup
         .string()
         .required('обязательное поле')
