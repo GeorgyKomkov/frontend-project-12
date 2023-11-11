@@ -15,7 +15,7 @@ const SocketProvider = ({ socket, children }) => {
   }, [dispatch, socket]);
 
   const newMessage = useCallback(async (messageData) => {
-    socket.emit('newMessage', messageData, (response) => {
+    socket.timeout(3000).emit('newMessage', messageData, (response) => {
       if (response.status !== 'ok') {
         console.error('Ошибка при отправке сообщения на сервер');
       }
@@ -23,15 +23,15 @@ const SocketProvider = ({ socket, children }) => {
   }, [socket]);
 
   const newChannel = useCallback((newNameChannel) => {
-    socket.emit('newChannel', { name: newNameChannel });
+    socket.timeout(3000).emit('newChannel', { name: newNameChannel });
   }, [socket]);
 
   const removeChannel = useCallback((channelId) => {
-    socket.emit('removeChannel', { id: channelId });
+    socket.timeout(3000).emit('removeChannel', { id: channelId });
   }, [socket]);
 
   const renameChannel = useCallback((channelId, newNameChannel) => {
-    socket.emit('renameChannel', { id: channelId, name: newNameChannel });
+    socket.timeout(3000).emit('renameChannel', { id: channelId, name: newNameChannel });
   }, [socket]);
 
   const context = useMemo(() => ({
