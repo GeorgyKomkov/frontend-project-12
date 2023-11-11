@@ -1,0 +1,245 @@
+[33mcommit c1471e0f3b26098d44cea27d84ce0a40b352b813[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 19:16:44 2023 +0300
+
+    ghjdthrf
+
+[33mcommit 407c14b2dd4ba94a542f183d88f7826ecd47953a[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 19:09:43 2023 +0300
+
+    тесты внезапно сломались
+
+[33mcommit 2d4ca5a49a5dd51aa27255e9459f5d55b314f2cb[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 18:59:52 2023 +0300
+
+    откат коммита до отсносительно рабочего состояния
+
+[33mcommit d4b6a4334ef5916cd7ae429e325650523ea8b767[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 18:05:58 2023 +0300
+
+    добавил фильтрацию англ.яз
+
+[33mcommit 59cf7b9d2d9a2badd8e45806b464d26d31e4f31b[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 17:58:10 2023 +0300
+
+    validation
+
+[33mcommit a4dbe83d91d367452fe7046e886ca07e0d5431b1[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 17:25:57 2023 +0300
+
+    проба валидации
+
+[33mcommit 46c15f39d03aa42da591e1c43cf435a5aec352f7[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 16:53:14 2023 +0300
+
+    работаю с валидацией формы
+
+[33mcommit b210eb3dd7066f51bc47c2d6213fdb24fe714072[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 16:23:03 2023 +0300
+
+    валидаци регистарции настройка текстов
+
+[33mcommit 8cd0f430f60b0e5f703074e9a06b77075836bf52[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 15:08:12 2023 +0300
+
+    обновил текста валидации регистрации
+
+[33mcommit 7b8d3d2a0c34d99001c450dba22f41f4639fec62[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 14:31:17 2023 +0300
+
+    обновил текст валидации формы регистарици
+
+[33mcommit da6fd457f4a81537e52ddf0374889b1a426c4d15[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 14:22:35 2023 +0300
+
+    настроил текст валидации формы регистарции
+
+[33mcommit c49227f5d8121a9b9ff2a9f9a0e8765b2e6962c6[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 02:11:52 2023 +0300
+
+    добавил бейджик
+
+[33mcommit 293f2e378864109ca29b7e1501b404dd96f2d335[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 01:53:44 2023 +0300
+
+    обновил установил зависимость @rollbar/react
+
+[33mcommit 6044c6ad05f80f4d471ec298a5d5f0c58fe73765[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 01:03:54 2023 +0300
+
+    Добавил Rollbur
+
+[33mcommit 1653bde4836d703133e9889c1137943f7afd3471[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 00:10:42 2023 +0300
+
+    добавил актуальную ссылку в редми
+
+[33mcommit 2fc42d426cde077046696941b4611c41f4a6395b[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Sat Nov 11 00:01:32 2023 +0300
+
+    убрал опечатку у версии сревера, обновил look
+
+[33mcommit ccaebb43a8a3cbdabcd1664e316225c865ac503e[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Fri Nov 10 00:57:15 2023 +0300
+
+    редми
+
+[33mcommit 4c457cd384b356a2cb947aa618b149a7bec37ca8[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Fri Nov 10 00:35:52 2023 +0300
+
+    установил более старую версию сервера
+
+[33mcommit 9dfaffe523ecfa3e48f15aab9b2011de400fa797[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Fri Nov 10 00:07:24 2023 +0300
+
+    локально удалил package-lock.json & node_modules и пересобрал все зависимости с помощью npm i
+
+[33mcommit 9691e87f8b0938553b7176be507212c45529b53c[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 23:14:30 2023 +0300
+
+    Убрал уалил не нужную зависимость из корневой директории и удалил один файл
+
+[33mcommit f6c26e41cf68a44c8f2cf8ed99fa831a0774ca90[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 22:45:10 2023 +0300
+
+    make
+
+[33mcommit 84175b89f0329d9aac1433024a6aa2be57095196[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 22:42:43 2023 +0300
+
+    make
+
+[33mcommit 9dd3416fd9ebb9f3e6e3c8f6519648f43081a739[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 22:38:38 2023 +0300
+
+    readme
+
+[33mcommit 02ba4f294ba1f6c99d505d4f5d4e102ddb6d7ea9[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 16:44:54 2023 +0300
+
+    редми
+
+[33mcommit f5fa08600ad7870b3dc521f42a0a24269397301c[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 14:32:31 2023 +0300
+
+    обновил makefile в корне проекта
+
+[33mcommit f39f6bedbda8f4da9c9da2d231eb151e79741e63[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 13:55:09 2023 +0300
+
+    перенс скрипт по сборке  в  /frontend/package.sjon из  коренвого package.json
+
+[33mcommit 8a6c9388fb2eca07958eeb5ce08ed11526e0d6f7[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Thu Nov 9 13:15:00 2023 +0300
+
+    добавил новый скрипт для сборки  билда фронтенда в папке: /buil, обновил make
+
+[33mcommit 24b6504c076c20a28d4ecf0b043de2b719a592ad[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 21:15:17 2023 +0300
+
+    редми
+
+[33mcommit 94fb200e419b461ef423b50bd6adfef3aeb73315[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 19:09:22 2023 +0300
+
+    убрал добавил классы сообщениям об ошибках в формах модальных окон
+
+[33mcommit 05b06c85a90be0246fc4a906b6dc8cba4d45da2f[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 19:07:53 2023 +0300
+
+    добавил класс сообщениям об ошибках в формах
+
+[33mcommit df26bad093506585147bae6c1fbe285fdca58186[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 19:06:30 2023 +0300
+
+    добавил класс сообщениям об ошибках в формах
+
+[33mcommit e4eea831e9d3c2c59207b2919b91593cc1f51e82[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 16:55:01 2023 +0300
+
+    обновил редми
+
+[33mcommit 4b33242413e23fd9217f32284f4d05009ee6d941[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 16:26:33 2023 +0300
+
+    обновил редми
+
+[33mcommit afaf3f4b0cd5a470102925609ca0ab7be2ef8674[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 16:25:35 2023 +0300
+
+    обновил редми
+
+[33mcommit bf2f04a70e6225b491e815494d38e1cc3139ffd4[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 16:23:04 2023 +0300
+
+    обновил редми
+
+[33mcommit cae26e8841707e6b4e867eb83d5d19e683aa2c36[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 16:16:54 2023 +0300
+
+    обновил редми
+
+[33mcommit bc8c0ce19c267bf95489d7b2fca6ef780cc3f010[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 13:46:13 2023 +0300
+
+    убрал последнюю правку
+
+[33mcommit 2d43cb612094220a1bb45ef8aadcedb74cde0035[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 13:43:32 2023 +0300
+
+    указал более старую версию ноды
+
+[33mcommit 02dfa730ae0a81d4bcc366d2fa77923d313ef59e[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Wed Nov 8 12:59:03 2023 +0300
+
+    поправил текст модального окна
+
+[33mcommit 1720ddd375855c3ffbf6637a1d46129c868644c9[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Tue Nov 7 21:58:19 2023 +0300
+
+    обновил классы
+
+[33mcommit b43ba122c9304a2352eee36a56b503d75f202fb0[m
+Author: Gosha Komkov <homosaipios@mail.ru>
+Date:   Tue Nov 7 20:53:20 2023 +0300
+
+    Скорретировал с�
