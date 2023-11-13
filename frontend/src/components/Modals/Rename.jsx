@@ -12,21 +12,18 @@ import filterWords from '../../filterWords';
 
 const Rename = () => {
   const { t } = useTranslation();
-  const channalId = useSelector((state) => state.modal.extra.channalId);
   const dispatch = useDispatch();
   const socket = useSocket();
   const rollbar = useRollbar();
   const inputRef = useRef(null);
-  const hendleClose = () => dispatch(close());
 
-  const existingChannels = useSelector((state) => state.channelsInfo.channels
-    .map((channel) => channel.name));
-
-  const oldNameChannal = useSelector((state) => state.channelsInfo.channels
-    .filter((channel) => channalId === channel.id)[0].name);
+  const channalId = useSelector((state) => state.modal.extra.channalId);
+  const channels = useSelector((state) => state.channelsInfo.channels);
+  const existingChannels = channels.map((channel) => channel.name);
+  const oldNameChannel = channels.find((channel) => channel.id === channalId)?.name || '';
 
   const formik = useFormik({
-    initialValues: { body: oldNameChannal },
+    initialValues: { body: oldNameChannel },
     validationSchema: yup.object().shape({
       body: yup
         .string()
@@ -40,7 +37,7 @@ const Rename = () => {
       try {
         await socket.renameChannel(channalId, filteredRename);
         toast.success(t('notifications.renameChannel'));
-        hendleClose();
+        dispatch(close());
       } catch (error) {
         toast.error(t('notifications.errorRenameChannel'));
         rollbar.error('RenameChannel', error);
@@ -55,8 +52,8 @@ const Rename = () => {
   }, []);
 
   return (
-    <Modal show centered>
-      <Modal.Header closeButton onHide={hendleClose}>
+    <Modal show centered onHide={() => dispatch(close())}>
+      <Modal.Header closeButton>
         <Modal.Title>{t('modal.renameChannel')}</Modal.Title>
       </Modal.Header>
 
@@ -78,14 +75,13 @@ const Rename = () => {
             />
             <Form.Label htmlFor="input-body" visuallyHidden>{t('modal.channelName')}</Form.Label>
             <Form.Control.Feedback type="invalid">
-              { formik.errors.body }
+              {formik.errors.body}
             </Form.Control.Feedback>
           </Form.Group>
           <Modal.Footer>
-            <Button variant="secondary" onClick={hendleClose}>{t('modal.send')}</Button>
+            <Button variant="secondary" onClick={() => dispatch(close())}>{t('modal.send')}</Button>
             <Button type="submit" variant="primary" disabled={formik.isSubmitting}>{t('modal.cancel')}</Button>
           </Modal.Footer>
-
         </Form>
       </Modal.Body>
     </Modal>
