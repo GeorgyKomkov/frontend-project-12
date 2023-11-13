@@ -8,7 +8,6 @@ import getModalComponent from './Modals/index';
 
 const ChatPage = () => {
   const auth = useAuth();
-  // const socket = useSocket();
   const dispatch = useDispatch();
   const { token } = auth.user;
   const header = token ? { Authorization: `Bearer ${token}` } : {};
@@ -18,9 +17,6 @@ const ChatPage = () => {
     dispatch(getDataChannels(dispatch, header));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
-  // useEffect(() => {
-  //   socket.socketOn();
-  // }, [socket]);
 
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
