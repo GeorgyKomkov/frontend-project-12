@@ -16,6 +16,7 @@ const Rename = () => {
   const dispatch = useDispatch();
   const socket = useSocket();
   const rollbar = useRollbar();
+  const inputRef = useRef(null);
   const hendleClose = () => dispatch(close());
 
   const existingChannels = useSelector((state) => state.channelsInfo.channels
@@ -47,7 +48,6 @@ const Rename = () => {
     },
   });
 
-  const inputRef = useRef();
   useEffect(() => {
     inputRef.current.select();
   }, []);
@@ -60,6 +60,7 @@ const Rename = () => {
 
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
+          <Form.Label visuallyHidden>{t('modal.channelName')}</Form.Label>
           <Form.Group>
             <Form.Control
               required
@@ -71,7 +72,6 @@ const Rename = () => {
               name="body"
               isInvalid={formik.errors.body}
             />
-            <Form.Label visuallyHidden>{t('modal.channelName')}</Form.Label>
             <Form.Control.Feedback type="invalid">
               { formik.errors.body }
             </Form.Control.Feedback>
