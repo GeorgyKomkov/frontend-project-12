@@ -61,16 +61,14 @@ const Rename = () => {
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group>
             <Form.Control
-              required
-              type="text"
               ref={inputRef}
-              id="input-body"
+              id="name"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.body}
-              data-testid="input-body"
               disabled={formik.isSubmitting}
-              name="body"
+              className="mb-2"
+              name="name"
               isInvalid={formik.errors.body}
             />
             <Form.Label htmlFor="input-body" visuallyHidden>{t('modal.channelName')}</Form.Label>
