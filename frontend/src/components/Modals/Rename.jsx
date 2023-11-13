@@ -38,7 +38,7 @@ const Rename = () => {
     onSubmit: async ({ body }) => {
       const filteredRename = filterWords(body);
       try {
-        socket.renameChannel(channalId, filteredRename);
+        await socket.renameChannel(channalId, filteredRename);
         toast.success(t('notifications.renameChannel'));
         hendleClose();
       } catch (error) {
@@ -49,7 +49,9 @@ const Rename = () => {
   });
 
   useEffect(() => {
-    inputRef.current.select();
+    if (inputRef.current) {
+      inputRef.current.select();
+    }
   }, []);
 
   return (
