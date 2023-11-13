@@ -73,7 +73,7 @@ const Add = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.body}
-              data-testid="input-body"
+              id="name"
               name="body"
               isInvalid={
                 formik.touched.body && formik.errors.body
@@ -84,7 +84,7 @@ const Add = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <Modal.Footer>
-            <Button variant="secondary" onClick={hendleClose}>{t('modal.send')}</Button>
+            <Button className="me-2" variant="secondary" onClick={hendleClose}>{t('modal.send')}</Button>
             <Button type="submit" variant="primary" disabled={formik.isSubmitting}>{t('modal.cancel')}</Button>
           </Modal.Footer>
         </Form>
