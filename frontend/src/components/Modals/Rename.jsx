@@ -65,6 +65,7 @@ const Rename = () => {
             <Form.Control
               required
               ref={inputRef}
+              id="input-body"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.body}
