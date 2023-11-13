@@ -67,13 +67,14 @@ const Add = () => {
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group>
+            <Form.Label htmlFor="input-body">{t('modal.channelName')}</Form.Label>
             <Form.Control
               required
               ref={inputRef}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.body}
-              id="name"
+              data-testid="input-body"
               name="body"
               isInvalid={
                 formik.touched.body && formik.errors.body
@@ -84,7 +85,7 @@ const Add = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <Modal.Footer>
-            <Button className="me-2" variant="secondary" onClick={hendleClose}>{t('modal.send')}</Button>
+            <Button variant="secondary" onClick={hendleClose}>{t('modal.send')}</Button>
             <Button type="submit" variant="primary" disabled={formik.isSubmitting}>{t('modal.cancel')}</Button>
           </Modal.Footer>
         </Form>
