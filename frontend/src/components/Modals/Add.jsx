@@ -67,7 +67,6 @@ const Add = () => {
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="input-body">{t('modal.channelName')}</Form.Label>
             <Form.Control
               required
               ref={inputRef}
@@ -80,6 +79,7 @@ const Add = () => {
                 formik.touched.body && formik.errors.body
               }
             />
+            <Form.Label visuallyHidden>{t('modal.channelName')}</Form.Label>
             <Form.Control.Feedback type="invalid">
               { formik.errors.body }
             </Form.Control.Feedback>

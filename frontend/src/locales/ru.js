@@ -60,6 +60,7 @@ export default {
       send: 'отменить',
       cancel: 'отправить',
       confirmSure: 'Уверены ?',
+      channelName: 'Имя канала',
     },
   },
 };
