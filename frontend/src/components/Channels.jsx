@@ -62,46 +62,6 @@ const Channels = () => {
       )}
     </li>
   ));
-
-  // const listChannels = channels.map((channel) => (
-  //   <li className="nav-item w-100" key={channel.id}>
-  //     {channel.removable ? (
-  //       <div className="d-flex btn-group">
-  //         <Button
-  //           className="w-100 rounded-0 text-start"
-  //           variant={channel.id === currentChannelId ? 'secondary' : ''}
-  //           onClick={() => handleChannelClick(channel.id)}
-  //         >
-  //           <span className="me-1">#</span>
-  //           {channel.name.length > 10
-  //             ? `${channel.name.slice(0, 10)}...`
-  //             : channel.name }
-  //         </Button>
-  //         <Dropdown>
-  //           <Dropdown.Toggle
-  //             type="button"
-  //             id={`dropdownToggle_${channel.id}`}
-  //             className="flex-grow-0 dropdown-toggle-split"
-  //             variant={channel.id === currentChannelId ? 'secondary' : ''}
-  //           />
-  //           <Dropdown.Menu>
-  //             <Dropdown.Item onClick={() => handleRemoveChannel(channel.id)}>Удалить</Dropdown.Item>
-  //             <Dropdown.Item onClick={() => handleRenameChannel(channel.id)}>Переименовать</Dropdown.Item>
-  //           </Dropdown.Menu>
-  //         </Dropdown>
-  //       </div>
-  //     ) : (
-  //       <Button
-  //         className="w-100 rounded-0 text-start"
-  //         variant={channel.id === currentChannelId ? 'secondary' : ''}
-  //         onClick={() => handleChannelClick(channel.id)}
-  //       >
-  //         <span className="me-1">#</span>
-  //         {channel.name}
-  //       </Button>
-  //     )}
-  //   </li>
-  // ));
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">

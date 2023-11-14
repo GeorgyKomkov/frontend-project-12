@@ -46,10 +46,10 @@ const Rename = () => {
   });
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef.current && formik.values.name === oldNameChannel) {
       inputRef.current.select();
     }
-  }, []);
+  }, [formik.values.name, oldNameChannel]);
 
   return (
     <Modal show centered onHide={() => dispatch(close())}>
