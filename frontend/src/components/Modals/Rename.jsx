@@ -55,7 +55,7 @@ const Rename = () => {
       </Modal.Header>
 
       <Modal.Body>
-        <Form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit} controlId="name">
           <Form.Group>
             <Form.Control
               type="text"
