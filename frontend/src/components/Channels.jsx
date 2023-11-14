@@ -31,7 +31,7 @@ const Channels = () => {
           >
             <span className="me-1">#</span>
             {channel.name.length > 10
-              ? `${channel.name.slice(0, 10)}...`
+              ? `${channel.name.slice(0, 11)}...`
               : channel.name }
           </Button>
           <Dropdown>
