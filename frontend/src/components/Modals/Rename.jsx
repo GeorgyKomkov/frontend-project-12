@@ -23,17 +23,17 @@ const Rename = () => {
   const oldNameChannel = channels.find((channel) => channel.id === channalId)?.name || '';
 
   const formik = useFormik({
-    initialValues: { body: oldNameChannel },
+    initialValues: { name: oldNameChannel },
     validationSchema: yup.object().shape({
-      body: yup
+      name: yup
         .string()
         .required('обязательное поле')
         .min(3, 'минимум 3 символа')
         .max(20, 'максимум 20 символов')
         .test('is-unique', 'Должно быть уникальным', (value) => !existingChannels.includes(value)),
     }),
-    onSubmit: async ({ body }) => {
-      const filteredRename = filterWords(body);
+    onSubmit: async ({ name }) => {
+      const filteredRename = filterWords(name);
       try {
         await socket.renameChannel(channalId, filteredRename);
         toast.success(t('notifications.renameChannel'));
@@ -66,15 +66,14 @@ const Rename = () => {
               id="name"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.body}
-              data-testid="input-body"
+              value={formik.values.name}
               disabled={formik.isSubmitting}
-              name="body"
-              isInvalid={formik.errors.body}
+              name="name"
+              isInvalid={formik.errors.name}
             />
-            <Form.Label htmlFor="input-body" visuallyHidden>{t('modal.channelName')}</Form.Label>
+            <Form.Label visuallyHidden>{t('modal.channelName')}</Form.Label>
             <Form.Control.Feedback type="invalid">
-              {formik.errors.body}
+              {formik.errors.name}
             </Form.Control.Feedback>
           </Form.Group>
           <Modal.Footer>
