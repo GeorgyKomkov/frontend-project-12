@@ -47,7 +47,7 @@ const Rename = () => {
 
   useEffect(() => {
     if (inputRef.current && formik.values.name === oldNameChannel) {
-      inputRef.current.select();
+      inputRef.current.focus();
     }
   }, [formik.values.name, oldNameChannel]);
 
