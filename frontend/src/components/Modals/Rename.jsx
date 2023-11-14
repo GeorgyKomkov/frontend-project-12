@@ -16,10 +16,10 @@ const Rename = () => {
   const socket = useSocket();
   const rollbar = useRollbar();
   const inputRef = useRef(null);
-  const channelId = useSelector((state) => state.modal.extra.channelId);
+  const channalId = useSelector((state) => state.modal.extra.channalId);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const existingChannels = channels.map((channel) => channel.name);
-  const oldNameChannel = channels.find((channel) => channel.id === channelId)?.name || '';
+  const oldNameChannel = channels.find((channel) => channel.id === channalId)?.name || '';
 
   const formik = useFormik({
     initialValues: { name: oldNameChannel },
@@ -34,7 +34,7 @@ const Rename = () => {
     onSubmit: async ({ name }) => {
       const filteredRename = filterWords(name);
       try {
-        await socket.renameChannel(channelId, filteredRename);
+        await socket.renameChannel(channalId, filteredRename);
         toast.success(t('notifications.renameChannel'));
         dispatch(close());
       } catch (error) {
