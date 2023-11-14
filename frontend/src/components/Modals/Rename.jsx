@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { Modal, Form, Button } from 'react-bootstrap';
 import * as yup from 'yup';
@@ -16,6 +16,7 @@ const Rename = () => {
   const socket = useSocket();
   const rollbar = useRollbar();
   const inputRef = useRef(null);
+  const [isRenaming, setIsRenaming] = useState(false);
 
   const channalId = useSelector((state) => state.modal.extra.channalId);
   const channels = useSelector((state) => state.channelsInfo.channels);
@@ -35,19 +36,22 @@ const Rename = () => {
     onSubmit: async ({ name }) => {
       const filteredRename = filterWords(name);
       try {
+        setIsRenaming(true);
         await socket.renameChannel(channalId, filteredRename);
         toast.success(t('notifications.renameChannel'));
         dispatch(close());
       } catch (error) {
         toast.error(t('notifications.errorRenameChannel'));
         rollbar.error('RenameChannel', error);
+      } finally {
+        setIsRenaming(false);
       }
     },
   });
 
   useEffect(() => {
     if (inputRef.current && formik.values.name === oldNameChannel) {
-      inputRef.current.focus();
+      inputRef.current.select();
     }
   }, [formik.values.name, oldNameChannel]);
 
@@ -67,7 +71,7 @@ const Rename = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.name}
-              disabled={formik.isSubmitting}
+              disabled={formik.isSubmitting || isRenaming}
               name="name"
               isInvalid={formik.errors.name}
             />
@@ -78,7 +82,7 @@ const Rename = () => {
           </Form.Group>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => dispatch(close())}>{t('modal.send')}</Button>
-            <Button type="submit" variant="primary" disabled={formik.isSubmitting}>{t('modal.cancel')}</Button>
+            <Button type="submit" variant="primary" disabled={formik.isSubmitting || isRenaming}>{t('modal.cancel')}</Button>
           </Modal.Footer>
         </Form>
       </Modal.Body>
