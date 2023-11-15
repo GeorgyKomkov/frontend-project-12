@@ -38,7 +38,7 @@ export default {
 
     notifications: {
       addChannel: 'Канал создан',
-      removeChannel: 'Канал удален',
+      removeChannel: 'Канал удалён',
       renameChannel: 'Канал переименован',
       errorAddChannel: 'Возникла ошибка при создании канала',
       errorRemoveChannel: 'Возникла ошибка при удалении канала',
