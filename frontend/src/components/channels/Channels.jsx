@@ -20,18 +20,22 @@ const Channels = () => {
   const handleRenameChannel = (id) => {
     dispatch(open({ type: 'renameChannel', extra: { channalId: id } }));
   };
+  const renderChannelButton = (channel) => (
+    <Button
+      className="w-100 rounded-0 text-start"
+      variant={channel.id === currentChannelId ? 'secondary' : 'light'}
+      onClick={() => handleChannelClick(channel.id)}
+    >
+      <span className="me-1">#</span>
+      {channel.name}
+    </Button>
+  );
+  
   const listChannels = channels.map((channel) => (
     <li className="nav-item w-100" key={channel.id}>
       {channel.removable ? (
         <div role="group" className="d-flex dropdown btn-group">
-          <Button
-            className="w-100 rounded-0 text-start"
-            variant={channel.id === currentChannelId ? 'secondary' : 'light'}
-            onClick={() => handleChannelClick(channel.id)}
-          >
-            <span className="me-1">#</span>
-            {channel.name}
-          </Button>
+          {renderChannelButton(channel)}
           <Dropdown>
             <Dropdown.Toggle
               id={`dropdownToggle_${channel.id}`}
@@ -49,17 +53,11 @@ const Channels = () => {
           </Dropdown>
         </div>
       ) : (
-        <Button
-          className="w-100 rounded-0 text-start"
-          variant={channel.id === currentChannelId ? 'secondary' : 'light'}
-          onClick={() => handleChannelClick(channel.id)}
-        >
-          <span className="me-1">#</span>
-          {channel.name}
-        </Button>
+        renderChannelButton(channel)
       )}
     </li>
   ));
+  
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
