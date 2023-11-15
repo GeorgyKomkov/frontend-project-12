@@ -9,13 +9,12 @@ import {
 } from 'react-router-dom';
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-// import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { useEffect } from 'react';
-import LoginPage from './LoginPage';
-import NotFoundPage from './NotFoundPage';
-import SignupPage from './SingupPage';
-import ChatPage from './ChatPage';
+import LoginPage from './pages/LoginPage.jsx';
+import NotFoundPage from './pages/NotFoundPage';
+import SignupPage from './pages/SingupPage.jsx';
+import ChatPage from './pages/ChatPage.jsx';
 import routes from '../routes';
 import { useAuth, useSocket } from '../hooks/index.js';
 import 'react-toastify/dist/ReactToastify.css';

@@ -2,9 +2,9 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Dropdown } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import ChannelIcon from '../icons/ChannelIcon';
-import { setCurrentChannel } from '../slices/channelsSlice';
-import { open } from '../slices/modalSlice';
+import ChannelIcon from '../../icons/ChannelIcon';
+import { setCurrentChannel } from '../../slices/channelsSlice';
+import { open } from '../../slices/modalSlice';
 
 const Channels = () => {
   const { t } = useTranslation();

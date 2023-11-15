@@ -3,9 +3,9 @@ import * as yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../hooks/index.js';
-import avatar from '../assets/avatar.jpg';
-import routes from '../routes.js';
+import { useAuth } from '../../hooks/index.js';
+import avatar from '../../assets/avatar.jpg';
+import routes from '../../routes.js';
 
 const LoginPage = () => {
   const { t } = useTranslation();

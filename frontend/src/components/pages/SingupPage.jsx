@@ -5,9 +5,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
-import avatarReg from '../assets/avatarReg.jpg';
-import routes from '../routes.js';
-import { useAuth } from '../hooks/index.js';
+import avatarReg from '../../assets/avatarReg.jpg';
+import routes from '../../routes.js';
+import { useAuth } from '../../hooks/index.js';
 
 const SignupPage = () => {
   const inputName = useRef(null);

@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Channels from './Channels';
-import Messages from './messages/Messages';
-import { useAuth } from '../hooks';
-import getDataChannels from '../api/getDataChannels';
-import getModalComponent from './Modals/index';
+import Channels from '../channels/Channels';
+import Messages from '../messages/Messages';
+import { useAuth } from '../../hooks';
+import getDataChannels from '../../api/getDataChannels';
+import getModalComponent from '../Modals/index';
 
 const ChatPage = () => {
   const auth = useAuth();
