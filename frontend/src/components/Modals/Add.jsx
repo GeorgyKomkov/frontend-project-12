@@ -30,10 +30,10 @@ const Add = () => {
   }, []);
 
   const formik = useFormik({
-    initialValues: { body: '' },
+    initialValues: { name: '' },
 
     validationSchema: yup.object().shape({
-      body: yup
+      name: yup
         .string()
         .required(t('validation.emptyField'))
         .min(3, t('validation.minMaxsimSymbols'))
@@ -42,8 +42,8 @@ const Add = () => {
     }),
     validateOnBlur: false,
     validateOnChange: false,
-    onSubmit: async ({ body }, { resetForm }) => {
-      const filteredNameChannel = filterWords(body);
+    onSubmit: async ({ name }, { resetForm }) => {
+      const filteredNameChannel = filterWords(name);
 
       try {
         await socket.newChannel(filteredNameChannel);
@@ -72,16 +72,16 @@ const Add = () => {
               ref={inputRef}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.body}
-              data-testid="input-body"
-              name="body"
+              value={formik.values.name}
+              data-testid="input-name"
+              name="name"
               isInvalid={
-                formik.touched.body && formik.errors.body
+                formik.touched.name && formik.errors.name
               }
             />
             <Form.Label visuallyHidden>{t('modal.channelName')}</Form.Label>
             <Form.Control.Feedback type="invalid">
-              { formik.errors.body }
+              { formik.errors.name }
             </Form.Control.Feedback>
           </Form.Group>
           <Modal.Footer>
