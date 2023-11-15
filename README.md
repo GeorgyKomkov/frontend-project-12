@@ -29,7 +29,7 @@
 ## Начало работы
 
 ```bash
-git clone [repository_url]
+git clone 
 cd frontend-project-12
 make install
 ```
