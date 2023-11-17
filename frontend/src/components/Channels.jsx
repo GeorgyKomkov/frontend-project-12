@@ -30,7 +30,9 @@ const Channels = () => {
             onClick={() => handleChannelClick(channel.id)}
           >
             <span className="me-1">#</span>
-            {channel.name}
+            {channel.name.length > 16
+              ? `${channel.name.slice(0, 11)}...`
+              : channel.name }
           </Button>
           <Dropdown>
             <Dropdown.Toggle

@@ -46,7 +46,7 @@ export default {
     },
 
     messagesCounter: {
-      messages_zero: 'Нет сообщений',
+      messages_zero: '{{count}} сообщений',
       messages_one: '{{count}} сообщение',
       messages_few: '{{count}} сообщения',
       messages_many: '{{count}} сообщений',

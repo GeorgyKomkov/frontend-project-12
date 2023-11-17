@@ -46,8 +46,9 @@ const NewMessegeForm = () => {
             className="border-0 p-0 ps-2"
             onChange={formik.handleChange}
             value={formik.values.messageBody}
+            disabled={formik.isSubmitting}
           />
-          <Button type="submit" variant="light" className="border-0">
+          <Button type="submit" variant="light" className="border-0" disabled={formik.isSubmitting}>
             <SendMessageIcon />
             <span className="visually-hidden">{t('send')}</span>
           </Button>
