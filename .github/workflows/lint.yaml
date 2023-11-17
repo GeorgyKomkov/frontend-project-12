@@ -1,6 +1,9 @@
 name: Lint
 
-on: [push]
+on:
+  push:
+    branches:
+      - main # или другая ваша основная ветка
 
 jobs:
   lint:
@@ -14,10 +17,10 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14' 
+        node-version: '14'
 
     - name: Install dependencies
       run: npm install
 
     - name: Run linter
-      run: cd fronten/ && make lint
+      run: cd frontend/ && make lint
