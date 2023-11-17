@@ -1,4 +1,5 @@
 [![hexlet-check](https://github.com/GeorgyKomkov/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/GeorgyKomkov/frontend-project-12/actions/workflows/hexlet-check.yml)
+[![Lint](https://github.com/GeorgyKomkov/frontend-project-12/actions/workflows/lint.yaml/badge.svg)](https://github.com/GeorgyKomkov/frontend-project-12/actions/workflows/lint.yaml)
 # Chat App
 
 Этот проект содержит  версию чата, созданную с использованием React и Redux. Цель проекта - продемонстрировать широкий спектр стандартных задач, с которыми сталкиваются фронтенд-разработчики в реальной жизни. Ключевые особенности включают:
