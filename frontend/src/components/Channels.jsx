@@ -25,14 +25,12 @@ const Channels = () => {
       {channel.removable ? (
         <div role="group" className="d-flex dropdown btn-group">
           <Button
-            className="w-100 rounded-0 text-start"
+            className="w-100 rounded-0 text-start text-truncate "
             variant={channel.id === currentChannelId ? 'secondary' : 'light'}
             onClick={() => handleChannelClick(channel.id)}
           >
             <span className="me-1">#</span>
-            {channel.name.length > 16
-              ? `${channel.name.slice(0, 11)}...`
-              : channel.name }
+            {channel.name}
           </Button>
           <Dropdown>
             <Dropdown.Toggle

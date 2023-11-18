@@ -1,14 +1,22 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useRef, useEffect } from 'react';
 import NewMessegeForm from './NewMessegeForm';
 
 const Messages = () => {
+  const messagesRef = useRef(null);
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const currentChannel = channels.filter((channel) => currentChannelId === channel.id)[0];
   const currentName = currentChannel ? currentChannel.name : '';
   const { t } = useTranslation();
   const messages = useSelector((state) => state.messagesInfo.messages);
   const currentMesseges = messages.filter((messege) => messege.channelId === currentChannelId);
+
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    }
+  }, [currentMesseges]);
 
   const listMessages = currentMesseges.map((message) => (
     <div className="text-break mb-2" key={message.id}>
@@ -28,7 +36,7 @@ const Messages = () => {
           <span className="text-muted">{t('messagesCounter.messages', { count: currentMesseges.length })}</span>
         </div>
         {/* блок вывода сообщений */}
-        <div id="messages-box" className="chat-messages overflow-auto px-5 ">
+        <div id="messages-box" ref={messagesRef} className="chat-messages overflow-auto px-5 ">
           {listMessages}
         </div>
         {/* блок формы отправки формы */}

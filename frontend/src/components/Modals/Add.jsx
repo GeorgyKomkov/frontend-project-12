@@ -13,7 +13,7 @@ import filterWords from '../../filterWords';
 const Add = () => {
   const { t } = useTranslation();
   const socket = useSocket();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   // eslint-disable-next-line arrow-body-style
   const existingChannels = useSelector((state) => {
     return state.channelsInfo.channels.map((channel) => channel.name);

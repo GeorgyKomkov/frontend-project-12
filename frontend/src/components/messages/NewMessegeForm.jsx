@@ -3,11 +3,13 @@ import { Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
+import { useRef, useEffect } from 'react';
 import SendMessageIcon from '../../icons/SendMessagesIcon';
 import { useAuth, useSocket } from '../../hooks';
 import filterWords from '../../filterWords';
 
 const NewMessegeForm = () => {
+  const inputRef = useRef(null);
   const { t } = useTranslation();
   const auth = useAuth();
   const socket = useSocket();
@@ -30,6 +32,17 @@ const NewMessegeForm = () => {
       messageBody: yup.string().required(),
     }),
   });
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [currentChannelId]);
+
+  useEffect(() => {
+    if (formik.values.messageBody === '') {
+      inputRef.current.focus();
+    }
+  }, [formik.values.messageBody]);
   return (
     <div className="mt-auto px-5 py-3">
       <Form
@@ -39,6 +52,7 @@ const NewMessegeForm = () => {
       >
         <Form.Group className="input-group">
           <Form.Control
+            ref={inputRef}
             name="messageBody"
             autoComplete="off"
             aria-label={t('newMessage')}
