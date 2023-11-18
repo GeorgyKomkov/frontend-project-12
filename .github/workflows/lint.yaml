@@ -20,7 +20,11 @@ jobs:
         node-version: '14'
 
     - name: Install dependencies
-      run: npm ci && cd frontend/ && npm ci
+      run: |
+        npm ci
+        cd frontend/
+        npm ci
+        cd ..
 
     - name: Run linter
-      run:  make lint
+      run:  npx eslint .

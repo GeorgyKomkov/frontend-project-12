@@ -43,6 +43,7 @@ const NewMessegeForm = () => {
       inputRef.current.focus();
     }
   }, [formik.values.messageBody]);
+
   return (
     <div className="mt-auto px-5 py-3">
       <Form
