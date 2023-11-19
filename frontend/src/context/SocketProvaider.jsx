@@ -26,7 +26,11 @@ const SocketProvider = ({ socket, children }) => {
 
   const newChannel = useCallback(async (newNameChannel) => {
     const { data } = await socket.emitWithAck('newChannel', { name: newNameChannel });
-    dispatch(setCurrentChannel(data.id));
+    if (data) {
+      dispatch(setCurrentChannel(data.id));
+    } else {
+      console.error('Ошибка при создании нового канала');
+    }
   }, [dispatch, socket]);
 
   const removeChannel = useCallback((channelId) => {

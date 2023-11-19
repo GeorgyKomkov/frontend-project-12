@@ -67,10 +67,8 @@ const Channels = () => {
     const lastChannel = channels[channels.length - 1];
     if (channelsListRef.current) {
       if (currentChannelId === 1) {
-      // Если currentChannelId равен 1, скроллируем вверх
         channelsListRef.current.scrollTop = 0;
       } else if (focusedChannel && focusedChannel.id === lastChannel.id) {
-      // Если currentChannelId равен  lastChannel.id, скроллируем вниз
         channelsListRef.current.scrollTop = channelsListRef.current.scrollHeight;
       }
     }
