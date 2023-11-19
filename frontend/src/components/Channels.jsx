@@ -42,11 +42,11 @@ const Channels = () => {
               className="flex-grow-0 dropdown-toggle dropdown-toggle-split "
               variant={channel.id === currentChannelId ? 'secondary' : 'light'}
             >
-              <span className="visually-hidden">Управление каналом</span>
+              <span className="visually-hidden">{t('dropdown.control')}</span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => handleRemoveChannel(channel.id)}>Удалить</Dropdown.Item>
-              <Dropdown.Item onClick={() => handleRenameChannel(channel.id)}>Переименовать</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleRemoveChannel(channel.id)}>{t('dropdown.remove')}</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleRenameChannel(channel.id)}>{t('dropdown.rename')}</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>

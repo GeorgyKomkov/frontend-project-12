@@ -20,6 +20,12 @@ export default {
     send: 'Отправить',
     toMain: 'на главную страницу',
 
+    dropdown: {
+      control: 'Управление каналом',
+      remove: 'Удалить',
+      rename: 'Переименовать',
+    },
+
     placeholders: {
       login: 'Ваш ник',
       username: 'Имя пользователя',
