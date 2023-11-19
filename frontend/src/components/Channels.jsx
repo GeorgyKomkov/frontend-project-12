@@ -2,11 +2,13 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Dropdown } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRef, useEffect } from 'react';
 import ChannelIcon from '../icons/ChannelIcon';
 import { setCurrentChannel } from '../slices/channelsSlice';
 import { open } from '../slices/modalSlice';
 
 const Channels = () => {
+  const channelsListRef = useRef(null);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
@@ -60,6 +62,19 @@ const Channels = () => {
       )}
     </li>
   ));
+  useEffect(() => {
+    const focusedChannel = channels.find((channel) => channel.id === currentChannelId);
+    const lastChannel = channels[channels.length - 1];
+    if (channelsListRef.current) {
+      if (currentChannelId === 1) {
+      // Если currentChannelId равен 1, скроллируем вверх
+        channelsListRef.current.scrollTop = 0;
+      } else if (focusedChannel && focusedChannel.id === lastChannel.id) {
+      // Если currentChannelId равен  lastChannel.id, скроллируем вниз
+        channelsListRef.current.scrollTop = channelsListRef.current.scrollHeight;
+      }
+    }
+  }, [channels, currentChannelId]);
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
@@ -74,6 +89,7 @@ const Channels = () => {
         </button>
       </div>
       <ul
+        ref={channelsListRef}
         id="channels-box"
         className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
       >
