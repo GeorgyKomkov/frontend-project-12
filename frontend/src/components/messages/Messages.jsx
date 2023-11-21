@@ -24,13 +24,12 @@ const Messages = () => {
       className="text-break mb-2"
       key={message.id}
     >
-      <b
-        className={`${message.username === auth.user.username ? 'bg-light ' : ''}`}
-      >
+      <b className={message.username === auth.user.username ? 'bg-light' : ''}>
         {message.username}
-
       </b>
-      {`: ${message.body}`}
+      <span className={message.username === auth.user.username ? 'bg-light' : ''}>
+        {`: ${message.body}`}
+      </span>
     </div>
   ));
 

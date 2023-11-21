@@ -18,8 +18,8 @@ const LoginPage = () => {
       password: '',
     },
     validationSchema: yup.object().shape({
-      username: yup.string().required('Это поле обязательно').trim(),
-      password: yup.string().required('Это поле обязательно').trim(),
+      username: yup.string().required(t('validation.emptyField')).trim(),
+      password: yup.string().required(t('validation.emptyField')).trim(),
     }),
     onSubmit: async ({ username, password }) => {
       try {
@@ -31,8 +31,8 @@ const LoginPage = () => {
       } catch (error) {
         if (error.response.status === 401) {
           formik.setErrors({
-            username: 'Неверные имя пользователя или пароль',
-            password: 'Неверные имя пользователя или пароль',
+            username: t('validation.authFailed'),
+            password: t('validation.authFailed'),
           });
         } else {
           console.error(error);

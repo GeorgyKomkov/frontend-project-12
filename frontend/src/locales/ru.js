@@ -35,6 +35,8 @@ export default {
     },
 
     validation: {
+      userExists: 'Такой пользователь уже существует',
+      authFailed: 'Неверные имя пользователя или пароль',
       minMaxsimSymbols: 'От 3 до 20 символов',
       emptyField: 'обязательное поле',
       minLengthPassword: 'Не менее 6 символов',

@@ -9,6 +9,7 @@ export const SocketContext = createContext({});
 
 const SocketProvider = ({ socket, children }) => {
   const dispatch = useDispatch();
+
   const socketOn = useCallback(() => {
     socket.on('newMessage', (payload) => dispatch(addMessages(payload)));
     socket.on('newChannel', (payload) => dispatch(addChannel(payload)));

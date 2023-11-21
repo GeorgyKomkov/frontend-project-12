@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom';
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-// import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { useEffect } from 'react';
 import LoginPage from './LoginPage';
