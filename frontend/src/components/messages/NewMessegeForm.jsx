@@ -5,10 +5,10 @@ import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import { useRef, useEffect } from 'react';
 import SendMessageIcon from '../../icons/SendMessagesIcon';
-import { useAuth, useSocket } from '../../hooks';
-import filterWords from '../../filterWords';
+import { useAuth, useSocket, useFilter } from '../../hooks';
 
 const NewMessegeForm = () => {
+  const filterWords = useFilter();
   const inputRef = useRef(null);
   const { t } = useTranslation();
   const auth = useAuth();

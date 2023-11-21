@@ -7,10 +7,10 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useRollbar } from '@rollbar/react';
 import { close } from '../../slices/modalSlice';
-import { useSocket } from '../../hooks';
-import filterWords from '../../filterWords';
+import { useSocket, useFilter } from '../../hooks';
 
 const Rename = () => {
+  const filterWords = useFilter();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const socket = useSocket();

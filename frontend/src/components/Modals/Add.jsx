@@ -7,10 +7,11 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useRollbar } from '@rollbar/react';
 import { close } from '../../slices/modalSlice';
-import { useSocket } from '../../hooks/index';
-import filterWords from '../../filterWords';
+import { useSocket, useFilter } from '../../hooks/index';
+// import filterWords from '../../filterWords';
 
 const Add = () => {
+  const filterWords = useFilter();
   const { t } = useTranslation();
   const socket = useSocket();
   const inputRef = useRef(null);
