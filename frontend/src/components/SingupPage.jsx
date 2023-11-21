@@ -49,7 +49,7 @@ const SignupPage = () => {
       } catch (error) {
         if (error.response.status === 409) {
           formik.setErrors({
-            username: t('validetion.userExists'),
+            username: t('validation.userExists'),
           });
         } else {
           console.error(error);

@@ -45,6 +45,8 @@ export default {
     },
 
     notifications: {
+      another: 'Что то пошло не так',
+      notАuthorized: 'Ошибка Авторизации',
       addChannel: 'Канал создан',
       removeChannel: 'Канал удалён',
       renameChannel: 'Канал переименован',

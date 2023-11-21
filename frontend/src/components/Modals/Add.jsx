@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import { useRollbar } from '@rollbar/react';
 import { close } from '../../slices/modalSlice';
 import { useSocket, useFilter } from '../../hooks/index';
-// import filterWords from '../../filterWords';
 
 const Add = () => {
   const filterWords = useFilter();
