@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import {
   BrowserRouter,
   Routes,
@@ -10,13 +9,12 @@ import {
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
-import { useEffect } from 'react';
 import LoginPage from './LoginPage';
 import NotFoundPage from './NotFoundPage';
 import SignupPage from './SingupPage';
 import ChatPage from './ChatPage';
 import routes from '../routes';
-import { useAuth, useSocket } from '../hooks/index.js';
+import { useAuth } from '../hooks/index.js';
 import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateRoute = ({ children }) => {
@@ -36,13 +34,7 @@ const LogOut = () => {
 };
 
 const App = () => {
-  const socket = useSocket();
   const { t } = useTranslation();
-
-  useEffect(() => {
-    socket.socketOn();
-  }, [socket]);
-
   return (
     <BrowserRouter>
       <div className="d-flex flex-column h-100">

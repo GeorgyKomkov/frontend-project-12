@@ -21,15 +21,13 @@ const Messages = () => {
 
   const listMessages = currentMesseges.map((message) => (
     <div
-      className="text-break mb-2"
+      className={message.username === auth.user.username ? 'text-break mb-2 bg-light' : 'text-break mb-2'}
       key={message.id}
     >
-      <b className={message.username === auth.user.username ? 'bg-light' : ''}>
+      <b>
         {message.username}
       </b>
-      <span className={message.username === auth.user.username ? 'bg-light' : ''}>
-        {`: ${message.body}`}
-      </span>
+      {`: ${message.body}`}
     </div>
   ));
 

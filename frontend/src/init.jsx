@@ -10,10 +10,19 @@ import SocketProvaider from './context/SocketProvaider.jsx';
 import store from './slices/index.js';
 import rollbarConfig from './rollbarConfig.js';
 import FilterProvider from './context/FilterProvaider.jsx';
+import { addMessages } from './slices/messagesSlice';
+import {
+  addChannel, removeChanneFromState, renameChannelFromState,
+} from './slices/channelsSlice';
 
 const init = async () => {
-  const socket = io();
   const i18n = i18next.createInstance();
+  const socket = io();
+
+  socket.on('newMessage', (payload) => store.dispatch(addMessages(payload)));
+  socket.on('newChannel', (payload) => store.dispatch(addChannel(payload)));
+  socket.on('removeChannel', (payload) => store.dispatch(removeChanneFromState(payload)));
+  socket.on('renameChannel', (payload) => store.dispatch(renameChannelFromState(payload)));
 
   await i18n.use(initReactI18next).init({
     resources,
