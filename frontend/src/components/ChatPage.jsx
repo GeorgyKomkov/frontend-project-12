@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import Channels from './Channels';
+import Channels from './channels/Channels';
 import Messages from './messages/Messages';
 import { useAuth } from '../hooks';
 import getDataChannels from '../api/getDataChannels';
