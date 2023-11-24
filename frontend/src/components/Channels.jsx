@@ -9,6 +9,7 @@ import { open } from '../slices/modalSlice';
 
 const Channels = () => {
   const channelsListRef = useRef(null);
+  const addButtonRef = useRef(null);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
@@ -35,12 +36,13 @@ const Channels = () => {
     }
   }, [channels, currentChannelId]);
   useEffect(() => {
-    if (channels.length > prevChannelsLength) {
+    if (channels.length > prevChannelsLength && channels.length !== 2) {
       const currentId = channels[channels.length - 1].id;
       dispatch(setCurrentChannel(currentId));
     }
     setPrevChannelsLength(channels.length);
-  }, [channels, dispatch, prevChannelsLength]);
+    addButtonRef.current.focus();
+  }, [channels, dispatch, prevChannelsLength, addButtonRef]);
 
   const listChannels = channels.map((channel) => (
     <li className="nav-item w-100" key={channel.id}>
@@ -88,6 +90,7 @@ const Channels = () => {
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>{t('channels')}</b>
         <button
+          ref={addButtonRef}
           type="button"
           className="p-0 text-primary btn btn-group-vertical"
           onClick={hendleAddChannel}
