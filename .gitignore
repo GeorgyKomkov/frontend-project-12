@@ -3,7 +3,8 @@
 
 # testing
 /coverage
-
+.env
+env
 # production
 /build
 /dist

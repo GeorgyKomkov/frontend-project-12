@@ -24,9 +24,7 @@ const ChatPage = () => {
         if (error.response && error.response.status === 401) {
           toast.error(t('notifications.notАuthorized'));
           auth.logOut();
-          console.log(error);
         } else {
-          console.log(error);
           toast.error(t('notifications.another'));
         }
       }

@@ -1,15 +1,17 @@
 import { createContext, useMemo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { addMessages } from '../slices/messagesSlice';
 import {
-  addChannel, removeChanneFromState, renameChannelFromState, setCurrentChannel,
+  addChannel, removeChanneFromState, renameChannelFromState,
 } from '../slices/channelsSlice';
 
 export const SocketContext = createContext({});
 
 const SocketProvider = ({ socket, children }) => {
   const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   const socketOn = useCallback(() => {
     socket.on('newMessage', (payload) => dispatch(addMessages(payload)));
     socket.on('newChannel', (payload) => dispatch(addChannel(payload)));
@@ -20,19 +22,14 @@ const SocketProvider = ({ socket, children }) => {
   const newMessage = useCallback(async (messageData) => {
     socket.emit('newMessage', messageData, (response) => {
       if (response.status !== 'ok') {
-        console.error('Ошибка при отправке сообщения на сервер');
+        toast.error(t('notifications.errMessage'));
       }
     });
-  }, [socket]);
+  }, [socket, t]);
 
-  const newChannel = useCallback(async (newNameChannel) => {
-    const { data } = await socket.emitWithAck('newChannel', { name: newNameChannel });
-    if (data) {
-      dispatch(setCurrentChannel(data.id));
-    } else {
-      console.error('Ошибка при создании нового канала');
-    }
-  }, [dispatch, socket]);
+  const newChannel = useCallback((newNameChannel) => {
+    socket.emit('newChannel', { name: newNameChannel });
+  }, [socket]);
 
   const removeChannel = useCallback((channelId) => {
     socket.emit('removeChannel', { id: channelId });

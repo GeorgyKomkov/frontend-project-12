@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('user', JSON.stringify(data));
   }, []);
 
-  const logOut = useCallback(async () => {
+  const logOut = useCallback(() => {
     setUser(null);
     localStorage.removeItem('user');
   }, []);
