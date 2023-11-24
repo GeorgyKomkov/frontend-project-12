@@ -41,7 +41,7 @@ const Messages = () => {
           <p className="m-0">
             <b>{`# ${currentName}`}</b>
           </p>
-          <div className="text-muted">{t('messagesCounter.messages', { count: currentMesseges.length })}</div>
+          <span className="text-muted">{t('messagesCounter.messages', { count: currentMesseges.length })}</span>
         </div>
         {/* блок вывода сообщений */}
         <div id="messages-box" ref={messagesRef} className="chat-messages overflow-auto px-5 ">
