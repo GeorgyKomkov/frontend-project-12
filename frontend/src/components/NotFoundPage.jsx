@@ -1,4 +1,6 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import routes from '../routes';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();
@@ -13,7 +15,7 @@ const NotFoundPage = () => {
       <h1 className="h4 text-muted">{t('notFound')}</h1>
       <p className="text-muted">
         {t('returnToHome')}
-        <a href="/">{t('toMain')}</a>
+        <Link to={routes.home()}>{t('toMain')}</Link>
       </p>
     </div>
   );
