@@ -12,7 +12,7 @@ const Channels = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
-  const [prevChannelsLength, setPrevChannelsLength] = useState(channels.length);
+  const [prevChannelsLength, setPrevChannelsLength] = useState(null);
 
   const handleChannelClick = (id) => dispatch(setCurrentChannel(id));
   const hendleAddChannel = () => dispatch(open({ type: 'addChannel' }));
@@ -32,7 +32,8 @@ const Channels = () => {
   }, [channels, currentChannelId]);
 
   useEffect(() => {
-    if (channels.length > prevChannelsLength && channels.length !== 2) {
+    if (channels.length > prevChannelsLength && prevChannelsLength && channels.length !== 2) {
+      console.log(prevChannelsLength, channels.length);
       const currentId = channels[channels.length - 1].id;
       dispatch(setCurrentChannel(currentId));
     }
